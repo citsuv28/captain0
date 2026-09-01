@@ -30,16 +30,7 @@ export default function AboutPage() {
         />
       </div>
 
-      <section className="mt-14 max-w-3xl border-t border-rule pt-10">
-        <h2 className="font-display text-2xl">What we sell</h2>
-        <p className="mt-4 leading-relaxed text-ink-muted">
-          Primary product is raw material: live-edge slabs, burl, blanks, and
-          bookmatched pairs. Species focus: European poplar burl (mappa / plop
-          negru bubos), European walnut (Juglans regia / nuc), European oak
-          (stejar). Finished epoxy river tables are portfolio examples only.
-        </p>
-        <CtaRow className="mt-8" />
-      </section>
+      <CtaRow className="mt-14" />
     </main>
   );
 }

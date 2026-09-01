@@ -31,7 +31,7 @@ Listings and page copy live under [`content/en/`](content/en/):
 
 Keep `[TBD]` visible. Do not invent years in business, prices, moisture, weights, defects, email, or WhatsApp numbers.
 
-English is the only locale shipped. A `content/ro/` catalog can be added later by extending `LOCALES` in `src/lib/content.ts` — do not invent Romanian copy until it is provided.
+English is the only locale shipped. A Romanian locale can be added later as `content/ro/` plus locale-aware routing in the App Router — do not invent Romanian marketing copy until it is provided. Species common names already listed in the brief (mappa / plop negru bubos, nuc, stejar) may appear as parentheticals on English stock cards.
 
 ## Pages
 

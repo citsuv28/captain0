@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageIntro } from "@/components/PageIntro";
-import { PhotoPlaceholder } from "@/components/PhotoPlaceholder";
+import { PhotoPlaceholder, type Grain } from "@/components/PhotoPlaceholder";
 import { getCopy, getPortfolio } from "@/lib/content";
 
 const copy = getCopy();
@@ -27,7 +27,7 @@ export default function PortfolioPage() {
               <span className="text-ink">{item.id}</span>
             </div>
             <PhotoPlaceholder
-              grain={item.id === "PORT-01" ? "table-walnut" : "table-burl"}
+              grain={item.grain as Grain}
               label={item.photoNote}
               className="aspect-[16/10]"
             />

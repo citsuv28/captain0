@@ -38,15 +38,10 @@ a {
   text-underline-offset: 0.18em;
 }
 
-.font-display {
-  font-family: var(--font-display);
+summary {
+  list-style: none;
 }
 
-.ticket-rule {
-  background-image: repeating-linear-gradient(
-    to right,
-    var(--color-rule) 0 6px,
-    transparent 6px 10px
-  );
-  height: 1px;
+summary::-webkit-details-marker {
+  display: none;
 }

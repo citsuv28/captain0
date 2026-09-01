@@ -1,4 +1,4 @@
-type Grain = "burl" | "walnut" | "oak" | "table-walnut" | "table-burl" | "yard";
+export type Grain = "burl" | "walnut" | "oak" | "table-walnut" | "table-burl" | "yard";
 
 type PhotoPlaceholderProps = {
   grain: Grain;
