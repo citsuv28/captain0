@@ -1,0 +1,22 @@
+{
+  "items": [
+    {
+      "id": "PORT-01",
+      "kind": "portfolio",
+      "primarySku": false,
+      "title": "River table — European walnut",
+      "wood": "European walnut (Juglans regia)",
+      "disclaimer": "Portfolio example. Made from the same stock; it shows what the wood can do. Not the main SKU.",
+      "photoNote": "Placeholder image — not a product photo for sale."
+    },
+    {
+      "id": "PORT-02",
+      "kind": "portfolio",
+      "primarySku": false,
+      "title": "River table — poplar burl (mappa)",
+      "wood": "European poplar burl (mappa)",
+      "disclaimer": "Portfolio example. Finished epoxy tables are not the main SKU.",
+      "photoNote": "Placeholder image — not a product photo for sale."
+    }
+  ]
+}

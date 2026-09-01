@@ -1,0 +1,58 @@
+{
+  "items": [
+    {
+      "id": "MAP-SAMPLE-01",
+      "sample": true,
+      "title": "European Poplar Burl (Mappa) Slab",
+      "species": "European poplar burl (mappa / plop negru bubos)",
+      "form": "Live-edge slab",
+      "grain": "burl",
+      "dimensions": {
+        "length": "[TBD]",
+        "width": "[TBD]",
+        "thickness": "[TBD]"
+      },
+      "moisture": "[TBD]",
+      "weight": "[TBD]",
+      "year": "[TBD]",
+      "defects": "[TBD]",
+      "photoNote": "Placeholder image — not the listed piece."
+    },
+    {
+      "id": "WAL-SAMPLE-02",
+      "sample": true,
+      "title": "European Walnut Live-Edge Slab",
+      "species": "European walnut (Juglans regia / nuc)",
+      "form": "Live-edge slab",
+      "grain": "walnut",
+      "dimensions": {
+        "length": "[TBD]",
+        "width": "[TBD]",
+        "thickness": "[TBD]"
+      },
+      "moisture": "[TBD]",
+      "weight": "[TBD]",
+      "year": "[TBD]",
+      "defects": "[TBD]",
+      "photoNote": "Placeholder image — not the listed piece."
+    },
+    {
+      "id": "OAK-SAMPLE-03",
+      "sample": true,
+      "title": "European Oak Bookmatched Pair",
+      "species": "European oak (stejar)",
+      "form": "Bookmatched pair",
+      "grain": "oak",
+      "dimensions": {
+        "length": "[TBD]",
+        "width": "[TBD]",
+        "thickness": "[TBD]"
+      },
+      "moisture": "[TBD]",
+      "weight": "[TBD]",
+      "year": "[TBD]",
+      "defects": "[TBD]",
+      "photoNote": "Placeholder image — not the listed piece."
+    }
+  ]
+}
