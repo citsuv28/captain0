@@ -1,9 +1,13 @@
+import Link from "next/link";
 import { CtaRow } from "@/components/CtaRow";
-import { PhotoPlaceholder } from "@/components/PhotoPlaceholder";
-import { getCopy } from "@/lib/content";
+import { PhotoMedia } from "@/components/PhotoMedia";
+import { getCopy, getPortfolio, getStock } from "@/lib/content";
 
 export default function HomePage() {
   const copy = getCopy();
+  const stock = getStock();
+  const portfolio = getPortfolio();
+  const hero = stock.items.find((item) => item.id === "C0-A9") ?? stock.items[0];
 
   return (
     <main id="main">
@@ -20,11 +24,57 @@ export default function HomePage() {
           </p>
           <CtaRow className="mt-8" />
         </div>
-        <PhotoPlaceholder
-          grain="yard"
-          label="Placeholder — mill yard, not a stock photo"
+        <PhotoMedia
+          src={hero.photo.src}
+          alt={hero.photo.alt}
+          caption={`${hero.id} — ${hero.photoNote}`}
           className="min-h-[280px] lg:min-h-[420px]"
+          priority
         />
+      </section>
+
+      <section
+        aria-labelledby="gallery"
+        className="border-t border-rule"
+      >
+        <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6">
+          <h2
+            id="gallery"
+            className="font-mono text-[11px] uppercase tracking-[0.18em] text-ink-muted"
+          >
+            Workshop photos
+          </h2>
+          <p className="mt-3 max-w-2xl text-ink-muted">
+            Raw stock candidates and finished-table portfolio. Tables are not
+            the main SKU.
+          </p>
+          <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {stock.items.map((item) => (
+              <li key={item.id}>
+                <Link href="/stock" className="block">
+                  <PhotoMedia
+                    src={item.photo.src}
+                    alt={item.photo.alt}
+                    caption={`Stock · ${item.id}`}
+                    className="aspect-[4/5]"
+                  />
+                </Link>
+              </li>
+            ))}
+            {portfolio.items.map((item) => (
+              <li key={item.id}>
+                <Link href="/portfolio" className="block">
+                  <PhotoMedia
+                    src={item.photo.src}
+                    alt={item.photo.alt}
+                    caption={`Portfolio · ${item.id}`}
+                    className="aspect-[4/5]"
+                  />
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
       </section>
 
       <section

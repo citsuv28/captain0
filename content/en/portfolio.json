@@ -1,24 +1,46 @@
 {
   "items": [
     {
-      "id": "PORT-01",
-      "kind": "portfolio",
-      "primarySku": false,
-      "grain": "table-walnut",
-      "title": "River table — European walnut",
-      "wood": "European walnut (Juglans regia)",
-      "disclaimer": "Portfolio example. Made from the same stock; it shows what the wood can do. Not the main SKU.",
-      "photoNote": "Placeholder image — not a product photo for sale."
-    },
-    {
-      "id": "PORT-02",
+      "id": "C0-P01",
       "kind": "portfolio",
       "primarySku": false,
       "grain": "table-burl",
-      "title": "River table — poplar burl (mappa)",
+      "title": "Finished mappa table",
       "wood": "European poplar burl (mappa)",
-      "disclaimer": "Portfolio example. Finished epoxy tables are not the main SKU.",
-      "photoNote": "Placeholder image — not a product photo for sale."
+      "disclaimer": "Portfolio example. Finished mappa (poplar burl) table made from the same stock. Not the main SKU.",
+      "photo": {
+        "src": "/photos/C0-P01-mappa-finished.png",
+        "alt": "Finished live-edge mappa table photographed from above"
+      },
+      "photoNote": "Portfolio only — not listed as a finished product for sale."
+    },
+    {
+      "id": "C0-P02",
+      "kind": "portfolio",
+      "primarySku": false,
+      "grain": "table-burl",
+      "title": "Finished mappa table",
+      "wood": "European poplar burl (mappa)",
+      "disclaimer": "Portfolio example. Finished mappa table; it shows what the wood can do. Not the main SKU.",
+      "photo": {
+        "src": "/photos/C0-P02-mappa-finished.png",
+        "alt": "Finished live-edge mappa table on sawhorses in the workshop"
+      },
+      "photoNote": "Portfolio only — not listed as a finished product for sale."
+    },
+    {
+      "id": "C0-P03",
+      "kind": "portfolio",
+      "primarySku": false,
+      "grain": "table-burl",
+      "title": "Finished mappa table (workshop)",
+      "wood": "European poplar burl (mappa)",
+      "disclaimer": "Portfolio example. Workshop photo of a finished mappa table. Not the main SKU.",
+      "photo": {
+        "src": "/photos/C0-P03-mappa-finished-workshop.png",
+        "alt": "Finished live-edge mappa table in the workshop"
+      },
+      "photoNote": "Portfolio only — not listed as a finished product for sale."
     }
   ]
 }

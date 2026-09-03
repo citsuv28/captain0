@@ -1,47 +1,34 @@
 {
   "items": [
     {
-      "id": "MAP-SAMPLE-01",
+      "id": "C0-A9",
       "sample": true,
-      "title": "European Poplar Burl (Mappa) Slab",
-      "species": "European poplar burl (mappa / plop negru bubos)",
+      "title": "Figured poplar slab A9",
+      "species": "Figured European poplar (mappa)",
       "form": "Live-edge slab",
       "grain": "burl",
       "dimensions": {
-        "length": "[TBD]",
-        "width": "[TBD]",
+        "length": "350 cm",
+        "width": "125 cm",
         "thickness": "[TBD]"
       },
+      "dimensionNote": "Length and width from chalk on the slab (350 × 125 cm). Chalk also shows 45; thickness is not treated as a confirmed measurement.",
       "moisture": "[TBD]",
       "weight": "[TBD]",
       "year": "[TBD]",
       "defects": "[TBD]",
-      "photoNote": "Placeholder image — not the listed piece."
+      "photo": {
+        "src": "/photos/C0-A9-figured-poplar-350x125.png",
+        "alt": "Figured poplar live-edge slab A9 standing in the yard, chalk marks 350 × 125"
+      },
+      "photoNote": "Exact piece in the photo. Candidate stock — inventory fields incomplete."
     },
     {
-      "id": "WAL-SAMPLE-02",
+      "id": "C0-S01",
       "sample": true,
-      "title": "European Walnut Live-Edge Slab",
-      "species": "European walnut (Juglans regia / nuc)",
+      "title": "Extra-wide live-edge slab",
+      "species": "oak or poplar — confirm",
       "form": "Live-edge slab",
-      "grain": "walnut",
-      "dimensions": {
-        "length": "[TBD]",
-        "width": "[TBD]",
-        "thickness": "[TBD]"
-      },
-      "moisture": "[TBD]",
-      "weight": "[TBD]",
-      "year": "[TBD]",
-      "defects": "[TBD]",
-      "photoNote": "Placeholder image — not the listed piece."
-    },
-    {
-      "id": "OAK-SAMPLE-03",
-      "sample": true,
-      "title": "European Oak Bookmatched Pair",
-      "species": "European oak (stejar)",
-      "form": "Bookmatched pair",
       "grain": "oak",
       "dimensions": {
         "length": "[TBD]",
@@ -52,7 +39,55 @@
       "weight": "[TBD]",
       "year": "[TBD]",
       "defects": "[TBD]",
-      "photoNote": "Placeholder image — not the listed piece."
+      "photo": {
+        "src": "/photos/C0-S01-wide-slab-yard.png",
+        "alt": "Extra-wide unfinished live-edge slab on the ground in the yard"
+      },
+      "photoNote": "Exact piece in the photo. Species not confirmed. Candidate stock — inventory fields incomplete."
+    },
+    {
+      "id": "C0-S02",
+      "sample": true,
+      "title": "Pale unfinished slab",
+      "species": "Species unconfirmed",
+      "form": "Live-edge slab",
+      "grain": "oak",
+      "dimensions": {
+        "length": "[TBD]",
+        "width": "[TBD]",
+        "thickness": "[TBD]"
+      },
+      "moisture": "[TBD]",
+      "weight": "[TBD]",
+      "year": "[TBD]",
+      "defects": "[TBD]",
+      "photo": {
+        "src": "/photos/C0-S02-pale-slab-shop.png",
+        "alt": "Pale unfinished live-edge slab standing in the workshop"
+      },
+      "photoNote": "Exact piece in the photo. Species unconfirmed. Candidate stock — inventory fields incomplete."
+    },
+    {
+      "id": "C0-W01",
+      "sample": true,
+      "title": "European walnut burl cookie",
+      "species": "European walnut burl (Juglans regia)",
+      "form": "Cookie / cross-cut",
+      "grain": "walnut",
+      "dimensions": {
+        "length": "[TBD]",
+        "width": "[TBD]",
+        "thickness": "[TBD]"
+      },
+      "moisture": "[TBD]",
+      "weight": "[TBD]",
+      "year": "[TBD]",
+      "defects": "[TBD]",
+      "photo": {
+        "src": "/photos/C0-W01-walnut-burl-cookie.png",
+        "alt": "Raw European walnut burl cookie standing on the workshop floor"
+      },
+      "photoNote": "Exact piece in the photo (C0-W01). Candidate stock — inventory fields incomplete."
     }
   ]
 }

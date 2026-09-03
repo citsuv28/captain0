@@ -70,12 +70,12 @@ describe("locked English marketing copy", () => {
   });
 });
 
-describe("sample stock listings", () => {
-  it("marks 2–3 listings as sample/placeholder stock with honest TBD fields", () => {
+describe("candidate stock listings", () => {
+  it("lists the four photographed candidates with honest TBD fields and no prices", () => {
     const stock = getStock("en");
+    const ids = stock.items.map((item) => item.id);
 
-    expect(stock.items.length).toBeGreaterThanOrEqual(2);
-    expect(stock.items.length).toBeLessThanOrEqual(3);
+    expect(ids).toEqual(["C0-A9", "C0-S01", "C0-S02", "C0-W01"]);
 
     for (const item of stock.items) {
       expect(item.sample).toBe(true);
@@ -83,30 +83,51 @@ describe("sample stock listings", () => {
       expect(item.weight).toContain("[TBD]");
       expect(item.defects).toContain("[TBD]");
       expect(item.year).toContain("[TBD]");
-      expect(item.dimensions.length).toContain("[TBD]");
-      expect(item.dimensions.width).toContain("[TBD]");
-      expect(item.dimensions.thickness).toContain("[TBD]");
       expect(item).not.toHaveProperty("price");
+      expect(item.photo.src).toMatch(/^\/photos\/C0-/);
     }
 
-    expect(stock.items[0].title).toBe(
-      "European Poplar Burl (Mappa) Slab",
-    );
+    const a9 = stock.items.find((item) => item.id === "C0-A9");
+    expect(a9?.title).toMatch(/figured poplar/i);
+    expect(a9?.dimensions.length).toBe("350 cm");
+    expect(a9?.dimensions.width).toBe("125 cm");
+    expect(a9?.dimensions.thickness).toContain("[TBD]");
+    expect(a9?.photo.src).toBe("/photos/C0-A9-figured-poplar-350x125.png");
+
+    const s01 = stock.items.find((item) => item.id === "C0-S01");
+    expect(s01?.species.toLowerCase()).toContain("oak or poplar — confirm");
+    expect(s01?.dimensions.length).toContain("[TBD]");
+    expect(s01?.photo.src).toBe("/photos/C0-S01-wide-slab-yard.png");
+
+    const s02 = stock.items.find((item) => item.id === "C0-S02");
+    expect(s02?.species.toLowerCase()).toContain("unconfirmed");
+    expect(s02?.photo.src).toBe("/photos/C0-S02-pale-slab-shop.png");
+
+    const w01 = stock.items.find((item) => item.id === "C0-W01");
+    expect(w01?.title).toBe("European walnut burl cookie");
+    expect(w01?.photo.src).toBe("/photos/C0-W01-walnut-burl-cookie.png");
   });
 });
 
 describe("portfolio examples", () => {
-  it("labels finished tables as portfolio, not the primary product", () => {
+  it("lists the three finished mappa tables as portfolio, not the primary product", () => {
     const portfolio = getPortfolio("en");
+    const ids = portfolio.items.map((item) => item.id);
 
-    expect(portfolio.items.length).toBeGreaterThanOrEqual(1);
-    expect(portfolio.items.length).toBeLessThanOrEqual(2);
+    expect(ids).toEqual(["C0-P01", "C0-P02", "C0-P03"]);
 
     for (const item of portfolio.items) {
       expect(item.kind).toBe("portfolio");
       expect(item.primarySku).toBe(false);
       expect(item.disclaimer.toLowerCase()).toMatch(/portfolio/);
       expect(item.disclaimer.toLowerCase()).toMatch(/not the main sku/);
+      expect(item.wood.toLowerCase()).toMatch(/mappa|poplar burl/);
     }
+
+    expect(portfolio.items[0].photo.src).toBe("/photos/C0-P01-mappa-finished.png");
+    expect(portfolio.items[1].photo.src).toBe("/photos/C0-P02-mappa-finished.png");
+    expect(portfolio.items[2].photo.src).toBe(
+      "/photos/C0-P03-mappa-finished-workshop.png",
+    );
   });
 });

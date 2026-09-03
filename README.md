@@ -21,6 +21,10 @@ Open [http://localhost:3000](http://localhost:3000).
 | `npm test` | Content-contract tests (locked copy, `[TBD]` fields) |
 | `npm run lint` | ESLint |
 
+## Photos
+
+Workshop photos live in [`public/photos/`](public/photos/) and are referenced from `content/en/stock.json` and `content/en/portfolio.json`. Finished tables (C0-P01–P03) are portfolio only.
+
 ## Edit stock without touching UI code
 
 Listings and page copy live under [`content/en/`](content/en/):

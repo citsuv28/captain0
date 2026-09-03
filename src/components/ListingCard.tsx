@@ -1,6 +1,6 @@
 import Link from "next/link";
+import { PhotoMedia } from "@/components/PhotoMedia";
 import { getCopy, type StockItem } from "@/lib/content";
-import { PhotoPlaceholder } from "@/components/PhotoPlaceholder";
 
 type ListingCardProps = {
   item: StockItem;
@@ -8,23 +8,22 @@ type ListingCardProps = {
 
 export function ListingCard({ item }: ListingCardProps) {
   const copy = getCopy();
-  const grain =
-    item.grain === "burl" || item.grain === "walnut" || item.grain === "oak"
-      ? item.grain
-      : "oak";
 
   return (
     <article className="flex flex-col border border-rule bg-paper">
       <div className="flex items-center justify-between gap-3 border-b border-rule px-4 py-2 font-mono text-[11px] uppercase tracking-[0.16em] text-ink-muted">
         <span>
-          {item.sample ? "Sample / placeholder stock" : "Stock"}
+          {item.sample
+            ? "Candidate stock — fields incomplete"
+            : "Stock"}
         </span>
         <span className="text-ink">{item.id}</span>
       </div>
-      <PhotoPlaceholder
-        grain={grain}
-        label={item.photoNote}
-        className="aspect-[16/10]"
+      <PhotoMedia
+        src={item.photo.src}
+        alt={item.photo.alt}
+        caption={item.photoNote}
+        className="aspect-[4/5]"
       />
       <div className="flex flex-1 flex-col gap-4 p-5">
         <div>
@@ -42,6 +41,9 @@ export function ListingCard({ item }: ListingCardProps) {
           <Spec label="Weight" value={item.weight} />
           <Spec label="Year cut" value={item.year} />
         </dl>
+        {"dimensionNote" in item && item.dimensionNote ? (
+          <p className="text-sm text-ink-muted">{item.dimensionNote}</p>
+        ) : null}
         <div className="border-t border-rule pt-4">
           <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-ink-muted">
             Defects
