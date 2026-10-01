@@ -41,6 +41,132 @@
         "alt": "Finished live-edge mappa table in the workshop"
       },
       "photoNote": "Portfolio only — not listed as a finished product for sale."
+    },
+    {
+      "id": "C0-B1-001",
+      "kind": "portfolio",
+      "primarySku": false,
+      "grain": "table-walnut",
+      "title": "Live-edge table with epoxy",
+      "wood": "Species not labeled on file",
+      "disclaimer": "Portfolio example (masă / epoxy). Finished table — not the main SKU.",
+      "photo": {
+        "src": "/photos/C0-B1-001-masa-epoxy.jpg",
+        "alt": "Finished live-edge table with a green epoxy inlay"
+      },
+      "photoNote": "Portfolio only — not listed as a finished product for sale."
+    },
+    {
+      "id": "C0-B1-002",
+      "kind": "portfolio",
+      "primarySku": false,
+      "grain": "table-burl",
+      "title": "Epoxy resin detail",
+      "wood": "Finished resin work (rasină)",
+      "disclaimer": "Portfolio example (rasină). Shows finished epoxy, not the main SKU.",
+      "photo": {
+        "src": "/photos/C0-B1-002-epoxy-detail.jpg",
+        "alt": "Close-up of pigmented epoxy in finished wood"
+      },
+      "photoNote": "Portfolio only — not listed as a finished product for sale."
+    },
+    {
+      "id": "C0-B1-003",
+      "kind": "portfolio",
+      "primarySku": false,
+      "grain": "table-burl",
+      "title": "Cookie table with epoxy river",
+      "wood": "Species not labeled on file",
+      "disclaimer": "Portfolio example (masă). Finished cookie table — not the main SKU.",
+      "photo": {
+        "src": "/photos/C0-B1-003-cookie-masa.jpg",
+        "alt": "Round cookie table with a dark epoxy river on a carved base"
+      },
+      "photoNote": "Portfolio only — not listed as a finished product for sale."
+    },
+    {
+      "id": "C0-B1-013",
+      "kind": "portfolio",
+      "primarySku": false,
+      "grain": "table-burl",
+      "title": "Finished mappa slab tabletop",
+      "wood": "European poplar burl (mappa)",
+      "disclaimer": "Portfolio example. Finished piece — not the main SKU.",
+      "photo": {
+        "src": "/photos/C0-B1-013-slab-mappa.jpg",
+        "alt": "Finished oval mappa slab tabletop with a glossy surface"
+      },
+      "photoNote": "Portfolio only — not listed as a finished product for sale."
+    },
+    {
+      "id": "C0-B1-022",
+      "kind": "portfolio",
+      "primarySku": false,
+      "grain": "table-burl",
+      "title": "Finished mappa table",
+      "wood": "European poplar burl (mappa / plop negru bubos)",
+      "disclaimer": "Portfolio example (mese). Finished table — not the main SKU.",
+      "photo": {
+        "src": "/photos/C0-B1-022-mese-plop-negru-bubos-mappa.jpg",
+        "alt": "Finished mappa (poplar burl) table"
+      },
+      "photoNote": "Portfolio only — not listed as a finished product for sale."
+    },
+    {
+      "id": "C0-B1-025",
+      "kind": "portfolio",
+      "primarySku": false,
+      "grain": "table-burl",
+      "title": "Finished mappa table",
+      "wood": "European poplar burl (mappa / plop negru bubos)",
+      "disclaimer": "Portfolio example (mese). Finished table — not the main SKU.",
+      "photo": {
+        "src": "/photos/C0-B1-025-mese-plop-negru-bubos-mappa.jpg",
+        "alt": "Finished mappa (poplar burl) table"
+      },
+      "photoNote": "Portfolio only — not listed as a finished product for sale."
+    },
+    {
+      "id": "C0-B1-026",
+      "kind": "portfolio",
+      "primarySku": false,
+      "grain": "table-burl",
+      "title": "Finished mappa table (base)",
+      "wood": "European poplar burl (mappa)",
+      "disclaimer": "Portfolio example. Finished furniture — not the main SKU.",
+      "photo": {
+        "src": "/photos/C0-B1-026-slab-mappa.jpg",
+        "alt": "Finished mappa burl table base outdoors"
+      },
+      "photoNote": "Portfolio only — not listed as a finished product for sale."
+    },
+    {
+      "id": "C0-B1-042",
+      "kind": "portfolio",
+      "primarySku": false,
+      "grain": "table-burl",
+      "title": "Mappa river table (epoxy)",
+      "wood": "European poplar burl (mappa / plop negru bubos)",
+      "disclaimer": "Portfolio example (rasină). Finished epoxy river table — not the main SKU.",
+      "photo": {
+        "src": "/photos/C0-B1-042-rasina-plop-negru-bubos-mappa.jpg",
+        "alt": "Mappa burl dining table with a blue epoxy river"
+      },
+      "photoNote": "Portfolio only — not listed as a finished product for sale."
+    },
+    {
+      "id": "C0-B2-033",
+      "kind": "portfolio",
+      "primarySku": false,
+      "grain": "table-burl",
+      "title": "Mappa river table (epoxy)",
+      "wood": "European poplar burl (mappa / plop negru bubos)",
+      "disclaimer": "Portfolio example (rasină). Finished epoxy work — not the main SKU.",
+      "photo": {
+        "src": "/photos/C0-B2-033-rasina-plop-negru-bubos-mappa.jpg",
+        "alt": "Finished mappa table with epoxy resin"
+      },
+      "photoNote": "Portfolio only — not listed as a finished product for sale."
     }
   ]
 }

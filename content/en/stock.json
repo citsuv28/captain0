@@ -88,6 +88,116 @@
         "alt": "Raw European walnut burl cookie standing on the workshop floor"
       },
       "photoNote": "Exact piece in the photo (C0-W01). Candidate stock — inventory fields incomplete."
+    },
+    {
+      "id": "C0-B2-009",
+      "sample": true,
+      "title": "Raw log on truck",
+      "species": "Species unconfirmed",
+      "form": "Log / round timber",
+      "grain": "oak",
+      "dimensions": {
+        "length": "[TBD]",
+        "width": "[TBD]",
+        "thickness": "[TBD]"
+      },
+      "moisture": "[TBD]",
+      "weight": "[TBD]",
+      "year": "[TBD]",
+      "defects": "[TBD]",
+      "photo": {
+        "src": "/photos/C0-B2-009-raw-log.jpg",
+        "alt": "Large raw log strapped on a truck bed"
+      },
+      "photoNote": "Workshop photo of raw timber (busteni). Candidate stock — inventory fields incomplete."
+    },
+    {
+      "id": "C0-B2-034",
+      "sample": true,
+      "title": "Walnut slab (nuc)",
+      "species": "European walnut (nuc)",
+      "form": "Slab",
+      "grain": "walnut",
+      "dimensions": {
+        "length": "[TBD]",
+        "width": "[TBD]",
+        "thickness": "[TBD]"
+      },
+      "moisture": "[TBD]",
+      "weight": "[TBD]",
+      "year": "[TBD]",
+      "defects": "[TBD]",
+      "photo": {
+        "src": "/photos/C0-B2-034-raw-slab-nuc.jpg",
+        "alt": "Figured walnut slab photographed on a white background"
+      },
+      "photoNote": "File labeled raw walnut (nuc). Candidate stock — inventory fields incomplete."
+    },
+    {
+      "id": "C0-B2-060",
+      "sample": true,
+      "title": "European poplar burl (mappa) timber",
+      "species": "European poplar burl (mappa / plop negru bubos)",
+      "form": "Raw slab / timber",
+      "grain": "burl",
+      "dimensions": {
+        "length": "[TBD]",
+        "width": "[TBD]",
+        "thickness": "[TBD]"
+      },
+      "moisture": "[TBD]",
+      "weight": "[TBD]",
+      "year": "[TBD]",
+      "defects": "[TBD]",
+      "photo": {
+        "src": "/photos/C0-B2-060-busteni-plop-negru-bubos-mappa.jpg",
+        "alt": "Raw figured mappa (poplar burl) slab in the yard"
+      },
+      "photoNote": "Busteni / raw material. Candidate stock — inventory fields incomplete."
+    },
+    {
+      "id": "C0-B2-061",
+      "sample": true,
+      "title": "European poplar burl (mappa) timber",
+      "species": "European poplar burl (mappa / plop negru bubos)",
+      "form": "Raw slab / timber",
+      "grain": "burl",
+      "dimensions": {
+        "length": "[TBD]",
+        "width": "[TBD]",
+        "thickness": "[TBD]"
+      },
+      "moisture": "[TBD]",
+      "weight": "[TBD]",
+      "year": "[TBD]",
+      "defects": "[TBD]",
+      "photo": {
+        "src": "/photos/C0-B2-061-busteni-plop-negru-bubos-mappa.jpg",
+        "alt": "Raw figured mappa (poplar burl) timber"
+      },
+      "photoNote": "Busteni / raw material. Candidate stock — inventory fields incomplete."
+    },
+    {
+      "id": "C0-B2-066",
+      "sample": true,
+      "title": "European poplar burl (mappa) timber",
+      "species": "European poplar burl (mappa / plop negru bubos)",
+      "form": "Raw slab / timber",
+      "grain": "burl",
+      "dimensions": {
+        "length": "[TBD]",
+        "width": "[TBD]",
+        "thickness": "[TBD]"
+      },
+      "moisture": "[TBD]",
+      "weight": "[TBD]",
+      "year": "[TBD]",
+      "defects": "[TBD]",
+      "photo": {
+        "src": "/photos/C0-B2-066-busteni-plop-negru-bubos-mappa.jpg",
+        "alt": "Raw figured mappa (poplar burl) timber"
+      },
+      "photoNote": "Busteni / raw material. Candidate stock — inventory fields incomplete."
     }
   ]
 }

@@ -23,7 +23,7 @@ Open [http://localhost:3000](http://localhost:3000).
 
 ## Photos
 
-Workshop photos live in [`public/photos/`](public/photos/) and are referenced from `content/en/stock.json` and `content/en/portfolio.json`. Finished tables (C0-P01–P03) are portfolio only.
+Workshop photos live in [`public/photos/`](public/photos/) and are referenced from `content/en/stock.json` (raw / busteni) and `content/en/portfolio.json` (finished mese + rasină). Finished tables are portfolio only.
 
 ## Edit stock without touching UI code
 

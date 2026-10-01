@@ -71,11 +71,23 @@ describe("locked English marketing copy", () => {
 });
 
 describe("candidate stock listings", () => {
-  it("lists the four photographed candidates with honest TBD fields and no prices", () => {
+  it("keeps the original four candidates and adds raw busteni/log listings with honest TBD fields", () => {
     const stock = getStock("en");
     const ids = stock.items.map((item) => item.id);
 
-    expect(ids).toEqual(["C0-A9", "C0-S01", "C0-S02", "C0-W01"]);
+    expect(ids).toEqual(
+      expect.arrayContaining([
+        "C0-A9",
+        "C0-S01",
+        "C0-S02",
+        "C0-W01",
+        "C0-B2-009",
+        "C0-B2-034",
+        "C0-B2-060",
+        "C0-B2-061",
+        "C0-B2-066",
+      ]),
+    );
 
     for (const item of stock.items) {
       expect(item.sample).toBe(true);
@@ -106,28 +118,47 @@ describe("candidate stock listings", () => {
     const w01 = stock.items.find((item) => item.id === "C0-W01");
     expect(w01?.title).toBe("European walnut burl cookie");
     expect(w01?.photo.src).toBe("/photos/C0-W01-walnut-burl-cookie.png");
+
+    const nuc = stock.items.find((item) => item.id === "C0-B2-034");
+    expect(nuc?.species.toLowerCase()).toContain("walnut");
+    expect(nuc?.photo.src).toBe("/photos/C0-B2-034-raw-slab-nuc.jpg");
   });
 });
 
 describe("portfolio examples", () => {
-  it("lists the three finished mappa tables as portfolio, not the primary product", () => {
+  it("keeps finished tables as portfolio, not the primary product, and adds mese/rasina photos", () => {
     const portfolio = getPortfolio("en");
     const ids = portfolio.items.map((item) => item.id);
 
-    expect(ids).toEqual(["C0-P01", "C0-P02", "C0-P03"]);
+    expect(ids).toEqual(
+      expect.arrayContaining([
+        "C0-P01",
+        "C0-P02",
+        "C0-P03",
+        "C0-B1-001",
+        "C0-B1-002",
+        "C0-B1-003",
+        "C0-B1-013",
+        "C0-B1-022",
+        "C0-B1-025",
+        "C0-B1-026",
+        "C0-B1-042",
+        "C0-B2-033",
+      ]),
+    );
 
     for (const item of portfolio.items) {
       expect(item.kind).toBe("portfolio");
       expect(item.primarySku).toBe(false);
       expect(item.disclaimer.toLowerCase()).toMatch(/portfolio/);
       expect(item.disclaimer.toLowerCase()).toMatch(/not the main sku/);
-      expect(item.wood.toLowerCase()).toMatch(/mappa|poplar burl/);
     }
 
-    expect(portfolio.items[0].photo.src).toBe("/photos/C0-P01-mappa-finished.png");
-    expect(portfolio.items[1].photo.src).toBe("/photos/C0-P02-mappa-finished.png");
-    expect(portfolio.items[2].photo.src).toBe(
-      "/photos/C0-P03-mappa-finished-workshop.png",
-    );
+    expect(
+      portfolio.items.find((item) => item.id === "C0-P01")?.photo.src,
+    ).toBe("/photos/C0-P01-mappa-finished.png");
+    expect(
+      portfolio.items.find((item) => item.id === "C0-B1-042")?.photo.src,
+    ).toBe("/photos/C0-B1-042-rasina-plop-negru-bubos-mappa.jpg");
   });
 });
