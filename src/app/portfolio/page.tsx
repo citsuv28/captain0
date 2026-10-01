@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageIntro } from "@/components/PageIntro";
-import { PhotoMedia } from "@/components/PhotoMedia";
+import { PhotoCard } from "@/components/PhotoCard";
 import { getCopy, getPortfolio } from "@/lib/content";
 
 const copy = getCopy();
@@ -19,24 +19,18 @@ export default function PortfolioPage() {
         <p>{copy.portfolio.intro}</p>
       </PageIntro>
 
+      <p className="mt-8 max-w-3xl text-sm text-ink-muted">
+        Finished tables and epoxy pieces are labeled in{" "}
+        <code className="font-mono text-ink">content/photos.json</code> with{" "}
+        <code className="font-mono text-ink">type: &quot;table&quot;</code> or{" "}
+        <code className="font-mono text-ink">type: &quot;epoxy&quot;</code>. They
+        are not the main SKU.
+      </p>
+
       <ul className="mt-12 grid gap-8 lg:grid-cols-2">
         {portfolio.items.map((item) => (
-          <li key={item.id} className="border border-rule bg-paper">
-            <div className="flex items-center justify-between gap-3 border-b border-rule px-4 py-2 font-mono text-[11px] uppercase tracking-[0.16em] text-ink-muted">
-              <span>Portfolio example</span>
-              <span className="text-ink">{item.id}</span>
-            </div>
-            <PhotoMedia
-              src={item.photo.src}
-              alt={item.photo.alt}
-              caption={item.photoNote}
-              className="aspect-[4/5]"
-            />
-            <div className="p-5">
-              <h2 className="font-display text-2xl">{item.title}</h2>
-              <p className="mt-1 text-sm text-ink-muted">{item.wood}</p>
-              <p className="mt-4 text-sm leading-relaxed">{item.disclaimer}</p>
-            </div>
+          <li key={item.id}>
+            <PhotoCard item={item} variant="portfolio" />
           </li>
         ))}
       </ul>

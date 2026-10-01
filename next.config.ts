@@ -1,7 +1,12 @@
 import type { NextConfig } from "next";
 
+const basePath = process.env.PAGES_BASE_PATH || "";
+
 const nextConfig: NextConfig = {
-  /* config options here */
+  output: "export",
+  images: { unoptimized: true },
+  trailingSlash: true,
+  ...(basePath ? { basePath } : {}),
 };
 
 export default nextConfig;

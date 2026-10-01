@@ -37,7 +37,7 @@
     "title": "Stock",
     "intro": "Every piece in stock is a one-off. Browse → message with slab ID + postcode → freight quote → pay → crate/pallet from Romania with origin docs. Shipping always quoted separately.",
     "howToTitle": "How to buy",
-    "placeholderBanner": "The cards below are candidate stock for this preview. Photos show the listed pieces. Moisture, weight, defects, and any unconfirmed dimensions remain [TBD]. Freight quoted separately.",
+    "placeholderBanner": "The cards below are candidate stock for this preview. Photos show the listed pieces. Empty species, dimensions, moisture, weight, and defects have not been filled in yet — blanks are not measurements. Freight quoted separately.",
     "steps": [
       "Browse the stock list and note the slab ID.",
       "Message us with the slab ID and your delivery postcode.",

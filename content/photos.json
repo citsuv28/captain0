@@ -1,0 +1,467 @@
+{
+  "_readme": "Admin file: edit one object to change a photo card. Empty string = not filled yet (do not invent numbers). type must be slab|log|veneer|table|epoxy. lane must be A_placi|B_furnir|C_special. slab/log/veneer render on /stock; table/epoxy render on /portfolio.",
+  "items": [
+    {
+      "id": "C0-A9",
+      "title": "Figured poplar slab A9",
+      "species_ro": "plop negru bubos",
+      "species_en": "European poplar burl (mappa)",
+      "type": "slab",
+      "lane": "A_placi",
+      "dims": {
+        "length": "350 cm",
+        "width": "125 cm",
+        "thickness": ""
+      },
+      "moisture": "",
+      "weight": "",
+      "year": "",
+      "defects": "",
+      "notes": "Length and width from chalk on the slab (350 × 125 cm). Chalk also shows 45; thickness is not treated as a confirmed measurement. Exact piece in the photo.",
+      "photo": {
+        "src": "/photos/C0-A9-figured-poplar-350x125.png",
+        "alt": "Figured poplar live-edge slab A9 standing in the yard, chalk marks 350 × 125"
+      }
+    },
+    {
+      "id": "C0-S01",
+      "title": "Extra-wide live-edge slab",
+      "species_ro": "",
+      "species_en": "oak or poplar — confirm",
+      "type": "slab",
+      "lane": "A_placi",
+      "dims": {
+        "length": "",
+        "width": "",
+        "thickness": ""
+      },
+      "moisture": "",
+      "weight": "",
+      "year": "",
+      "defects": "",
+      "notes": "Exact piece in the photo. Species not confirmed.",
+      "photo": {
+        "src": "/photos/C0-S01-wide-slab-yard.png",
+        "alt": "Extra-wide unfinished live-edge slab on the ground in the yard"
+      }
+    },
+    {
+      "id": "C0-S02",
+      "title": "Pale unfinished slab",
+      "species_ro": "",
+      "species_en": "",
+      "type": "slab",
+      "lane": "A_placi",
+      "dims": {
+        "length": "",
+        "width": "",
+        "thickness": ""
+      },
+      "moisture": "",
+      "weight": "",
+      "year": "",
+      "defects": "",
+      "notes": "Exact piece in the photo. Species unconfirmed.",
+      "photo": {
+        "src": "/photos/C0-S02-pale-slab-shop.png",
+        "alt": "Pale unfinished live-edge slab standing in the workshop"
+      }
+    },
+    {
+      "id": "C0-W01",
+      "title": "European walnut burl cookie",
+      "species_ro": "nuc",
+      "species_en": "European walnut burl (Juglans regia)",
+      "type": "slab",
+      "lane": "C_special",
+      "dims": {
+        "length": "",
+        "width": "",
+        "thickness": ""
+      },
+      "moisture": "",
+      "weight": "",
+      "year": "",
+      "defects": "",
+      "notes": "Exact piece in the photo (C0-W01). Cookie / cross-cut. Inventory fields incomplete.",
+      "photo": {
+        "src": "/photos/C0-W01-walnut-burl-cookie.png",
+        "alt": "Raw European walnut burl cookie standing on the workshop floor"
+      }
+    },
+    {
+      "id": "C0-B2-009",
+      "title": "Raw log on truck",
+      "species_ro": "",
+      "species_en": "",
+      "type": "log",
+      "lane": "A_placi",
+      "dims": {
+        "length": "",
+        "width": "",
+        "thickness": ""
+      },
+      "moisture": "",
+      "weight": "",
+      "year": "",
+      "defects": "",
+      "notes": "Workshop photo of raw timber (busteni). Species not labeled on file.",
+      "photo": {
+        "src": "/photos/C0-B2-009-raw-log.jpg",
+        "alt": "Large raw log strapped on a truck bed"
+      }
+    },
+    {
+      "id": "C0-B2-034",
+      "title": "Walnut slab (nuc)",
+      "species_ro": "nuc",
+      "species_en": "European walnut (Juglans regia)",
+      "type": "slab",
+      "lane": "A_placi",
+      "dims": {
+        "length": "",
+        "width": "",
+        "thickness": ""
+      },
+      "moisture": "",
+      "weight": "",
+      "year": "",
+      "defects": "",
+      "notes": "File labeled raw walnut (nuc). Inventory fields incomplete.",
+      "photo": {
+        "src": "/photos/C0-B2-034-raw-slab-nuc.jpg",
+        "alt": "Figured walnut slab photographed on a white background"
+      }
+    },
+    {
+      "id": "C0-B2-060",
+      "title": "European poplar burl (mappa) timber",
+      "species_ro": "plop negru bubos",
+      "species_en": "European poplar burl (mappa)",
+      "type": "slab",
+      "lane": "A_placi",
+      "dims": {
+        "length": "",
+        "width": "",
+        "thickness": ""
+      },
+      "moisture": "",
+      "weight": "",
+      "year": "",
+      "defects": "",
+      "notes": "Busteni / raw material. Inventory fields incomplete.",
+      "photo": {
+        "src": "/photos/C0-B2-060-busteni-plop-negru-bubos-mappa.jpg",
+        "alt": "Raw figured mappa (poplar burl) slab in the yard"
+      }
+    },
+    {
+      "id": "C0-B2-061",
+      "title": "European poplar burl (mappa) timber",
+      "species_ro": "plop negru bubos",
+      "species_en": "European poplar burl (mappa)",
+      "type": "slab",
+      "lane": "A_placi",
+      "dims": {
+        "length": "",
+        "width": "",
+        "thickness": ""
+      },
+      "moisture": "",
+      "weight": "",
+      "year": "",
+      "defects": "",
+      "notes": "Busteni / raw material. Inventory fields incomplete.",
+      "photo": {
+        "src": "/photos/C0-B2-061-busteni-plop-negru-bubos-mappa.jpg",
+        "alt": "Raw figured mappa (poplar burl) timber"
+      }
+    },
+    {
+      "id": "C0-B2-066",
+      "title": "European poplar burl (mappa) timber",
+      "species_ro": "plop negru bubos",
+      "species_en": "European poplar burl (mappa)",
+      "type": "slab",
+      "lane": "A_placi",
+      "dims": {
+        "length": "",
+        "width": "",
+        "thickness": ""
+      },
+      "moisture": "",
+      "weight": "",
+      "year": "",
+      "defects": "",
+      "notes": "Busteni / raw material. Inventory fields incomplete.",
+      "photo": {
+        "src": "/photos/C0-B2-066-busteni-plop-negru-bubos-mappa.jpg",
+        "alt": "Raw figured mappa (poplar burl) timber"
+      }
+    },
+    {
+      "id": "C0-P01",
+      "title": "Finished mappa table",
+      "species_ro": "plop negru bubos",
+      "species_en": "European poplar burl (mappa)",
+      "type": "table",
+      "lane": "C_special",
+      "dims": {
+        "length": "",
+        "width": "",
+        "thickness": ""
+      },
+      "moisture": "",
+      "weight": "",
+      "year": "",
+      "defects": "",
+      "notes": "Portfolio example. Finished mappa (poplar burl) table made from the same stock. Not the main SKU.",
+      "photo": {
+        "src": "/photos/C0-P01-mappa-finished.png",
+        "alt": "Finished live-edge mappa table photographed from above"
+      }
+    },
+    {
+      "id": "C0-P02",
+      "title": "Finished mappa table",
+      "species_ro": "plop negru bubos",
+      "species_en": "European poplar burl (mappa)",
+      "type": "table",
+      "lane": "C_special",
+      "dims": {
+        "length": "",
+        "width": "",
+        "thickness": ""
+      },
+      "moisture": "",
+      "weight": "",
+      "year": "",
+      "defects": "",
+      "notes": "Portfolio example. Finished mappa table; it shows what the wood can do. Not the main SKU.",
+      "photo": {
+        "src": "/photos/C0-P02-mappa-finished.png",
+        "alt": "Finished live-edge mappa table on sawhorses in the workshop"
+      }
+    },
+    {
+      "id": "C0-P03",
+      "title": "Finished mappa table (workshop)",
+      "species_ro": "plop negru bubos",
+      "species_en": "European poplar burl (mappa)",
+      "type": "table",
+      "lane": "C_special",
+      "dims": {
+        "length": "",
+        "width": "",
+        "thickness": ""
+      },
+      "moisture": "",
+      "weight": "",
+      "year": "",
+      "defects": "",
+      "notes": "Portfolio example. Workshop photo of a finished mappa table. Not the main SKU.",
+      "photo": {
+        "src": "/photos/C0-P03-mappa-finished-workshop.png",
+        "alt": "Finished live-edge mappa table in the workshop"
+      }
+    },
+    {
+      "id": "C0-B1-001",
+      "title": "Live-edge table with epoxy",
+      "species_ro": "",
+      "species_en": "",
+      "type": "epoxy",
+      "lane": "C_special",
+      "dims": {
+        "length": "",
+        "width": "",
+        "thickness": ""
+      },
+      "moisture": "",
+      "weight": "",
+      "year": "",
+      "defects": "",
+      "notes": "Portfolio example (masă / epoxy). Finished table — not the main SKU. Species not labeled on file.",
+      "photo": {
+        "src": "/photos/C0-B1-001-masa-epoxy.jpg",
+        "alt": "Finished live-edge table with a green epoxy inlay"
+      }
+    },
+    {
+      "id": "C0-B1-002",
+      "title": "Epoxy resin detail",
+      "species_ro": "",
+      "species_en": "",
+      "type": "epoxy",
+      "lane": "C_special",
+      "dims": {
+        "length": "",
+        "width": "",
+        "thickness": ""
+      },
+      "moisture": "",
+      "weight": "",
+      "year": "",
+      "defects": "",
+      "notes": "Portfolio example (rasină). Shows finished epoxy, not the main SKU.",
+      "photo": {
+        "src": "/photos/C0-B1-002-epoxy-detail.jpg",
+        "alt": "Close-up of pigmented epoxy in finished wood"
+      }
+    },
+    {
+      "id": "C0-B1-003",
+      "title": "Cookie table with epoxy river",
+      "species_ro": "",
+      "species_en": "",
+      "type": "epoxy",
+      "lane": "C_special",
+      "dims": {
+        "length": "",
+        "width": "",
+        "thickness": ""
+      },
+      "moisture": "",
+      "weight": "",
+      "year": "",
+      "defects": "",
+      "notes": "Portfolio example (masă). Finished cookie table — not the main SKU. Species not labeled on file.",
+      "photo": {
+        "src": "/photos/C0-B1-003-cookie-masa.jpg",
+        "alt": "Round cookie table with a dark epoxy river on a carved base"
+      }
+    },
+    {
+      "id": "C0-B1-013",
+      "title": "Finished mappa slab tabletop",
+      "species_ro": "plop negru bubos",
+      "species_en": "European poplar burl (mappa)",
+      "type": "table",
+      "lane": "C_special",
+      "dims": {
+        "length": "",
+        "width": "",
+        "thickness": ""
+      },
+      "moisture": "",
+      "weight": "",
+      "year": "",
+      "defects": "",
+      "notes": "Portfolio example. Finished piece — not the main SKU.",
+      "photo": {
+        "src": "/photos/C0-B1-013-slab-mappa.jpg",
+        "alt": "Finished oval mappa slab tabletop with a glossy surface"
+      }
+    },
+    {
+      "id": "C0-B1-022",
+      "title": "Finished mappa table",
+      "species_ro": "plop negru bubos",
+      "species_en": "European poplar burl (mappa)",
+      "type": "table",
+      "lane": "C_special",
+      "dims": {
+        "length": "",
+        "width": "",
+        "thickness": ""
+      },
+      "moisture": "",
+      "weight": "",
+      "year": "",
+      "defects": "",
+      "notes": "Portfolio example (mese). Finished table — not the main SKU.",
+      "photo": {
+        "src": "/photos/C0-B1-022-mese-plop-negru-bubos-mappa.jpg",
+        "alt": "Finished mappa (poplar burl) table"
+      }
+    },
+    {
+      "id": "C0-B1-025",
+      "title": "Finished mappa table",
+      "species_ro": "plop negru bubos",
+      "species_en": "European poplar burl (mappa)",
+      "type": "table",
+      "lane": "C_special",
+      "dims": {
+        "length": "",
+        "width": "",
+        "thickness": ""
+      },
+      "moisture": "",
+      "weight": "",
+      "year": "",
+      "defects": "",
+      "notes": "Portfolio example (mese). Finished table — not the main SKU.",
+      "photo": {
+        "src": "/photos/C0-B1-025-mese-plop-negru-bubos-mappa.jpg",
+        "alt": "Finished mappa (poplar burl) table"
+      }
+    },
+    {
+      "id": "C0-B1-026",
+      "title": "Finished mappa table (base)",
+      "species_ro": "plop negru bubos",
+      "species_en": "European poplar burl (mappa)",
+      "type": "table",
+      "lane": "C_special",
+      "dims": {
+        "length": "",
+        "width": "",
+        "thickness": ""
+      },
+      "moisture": "",
+      "weight": "",
+      "year": "",
+      "defects": "",
+      "notes": "Portfolio example. Finished furniture — not the main SKU.",
+      "photo": {
+        "src": "/photos/C0-B1-026-slab-mappa.jpg",
+        "alt": "Finished mappa burl table base outdoors"
+      }
+    },
+    {
+      "id": "C0-B1-042",
+      "title": "Mappa river table (epoxy)",
+      "species_ro": "plop negru bubos",
+      "species_en": "European poplar burl (mappa)",
+      "type": "epoxy",
+      "lane": "C_special",
+      "dims": {
+        "length": "",
+        "width": "",
+        "thickness": ""
+      },
+      "moisture": "",
+      "weight": "",
+      "year": "",
+      "defects": "",
+      "notes": "Portfolio example (rasină). Finished epoxy river table — not the main SKU.",
+      "photo": {
+        "src": "/photos/C0-B1-042-rasina-plop-negru-bubos-mappa.jpg",
+        "alt": "Mappa burl dining table with a blue epoxy river"
+      }
+    },
+    {
+      "id": "C0-B2-033",
+      "title": "Mappa river table (epoxy)",
+      "species_ro": "plop negru bubos",
+      "species_en": "European poplar burl (mappa)",
+      "type": "epoxy",
+      "lane": "C_special",
+      "dims": {
+        "length": "",
+        "width": "",
+        "thickness": ""
+      },
+      "moisture": "",
+      "weight": "",
+      "year": "",
+      "defects": "",
+      "notes": "Portfolio example (rasină). Finished epoxy work — not the main SKU.",
+      "photo": {
+        "src": "/photos/C0-B2-033-rasina-plop-negru-bubos-mappa.jpg",
+        "alt": "Finished mappa table with epoxy resin"
+      }
+    }
+  ]
+}

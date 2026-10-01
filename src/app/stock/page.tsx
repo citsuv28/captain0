@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { ListingCard } from "@/components/ListingCard";
+import { PhotoCard } from "@/components/PhotoCard";
 import { PageIntro } from "@/components/PageIntro";
 import { getCopy, getStock } from "@/lib/content";
 
@@ -34,10 +34,16 @@ export default function StockPage() {
         {copy.stock.placeholderBanner}
       </p>
 
+      <p className="mt-6 max-w-3xl text-sm text-ink-muted">
+        Species, dimensions, and notes for each photo are edited in{" "}
+        <code className="font-mono text-ink">content/photos.json</code>. Empty
+        fields show as a dash — they are not measurements.
+      </p>
+
       <ul className="mt-8 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
         {stock.items.map((item) => (
           <li key={item.id}>
-            <ListingCard item={item} />
+            <PhotoCard item={item} variant="stock" />
           </li>
         ))}
       </ul>

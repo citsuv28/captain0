@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { CtaRow } from "@/components/CtaRow";
 import { PageIntro } from "@/components/PageIntro";
 import { PhotoMedia } from "@/components/PhotoMedia";
-import { getCopy, getStock } from "@/lib/content";
+import { getCopy, getStock, speciesCaption } from "@/lib/content";
 
 const copy = getCopy();
 
@@ -26,7 +26,7 @@ export default function AboutPage() {
           <PhotoMedia
             src={yard.photo.src}
             alt={yard.photo.alt}
-            caption={`${yard.id} — ${yard.species}`}
+            caption={`${yard.id} — ${speciesCaption(yard)}`}
             className="min-h-[260px]"
           />
         ) : null}
@@ -34,7 +34,7 @@ export default function AboutPage() {
           <PhotoMedia
             src={shop.photo.src}
             alt={shop.photo.alt}
-            caption={`${shop.id} — ${shop.species}`}
+            caption={`${shop.id} — ${speciesCaption(shop)}`}
             className="min-h-[260px]"
           />
         ) : null}

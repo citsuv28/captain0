@@ -27,7 +27,7 @@ export default function HomePage() {
         <PhotoMedia
           src={hero.photo.src}
           alt={hero.photo.alt}
-          caption={`${hero.id} — ${hero.photoNote}`}
+          caption={`${hero.id} — ${hero.notes}`}
           className="min-h-[280px] lg:min-h-[420px]"
           priority
         />
