@@ -50,9 +50,10 @@ Example — set species on the mappa timber photo `C0-B2-060`:
 **Rules**
 
 - Empty string `""` means “not filled yet”. Do not invent lengths, moisture, weight, or prices.
-- `type` must be one of: `slab` | `log` | `veneer` | `table` | `epoxy`.
+- `type` must be one of: `slab` | `log` | `veneer` | `table` | `epoxy` | `workshop`.
 - `lane` must be one of: `A_placi` | `B_furnir` | `C_special`.
-- Photos themselves live in [`public/photos/`](public/photos/). Point `photo.src` at `/photos/filename.jpg`.
+- `hero_lane` A+B → Stock, D → Portfolio, C+E → About. Home prefers A+B+D.
+- Photos themselves live in [`public/photos/`](public/photos/) and [`public/photos/heroes/`](public/photos/heroes/).
 
 Marketing sentences (hero, about, contact placeholders) stay in [`content/en/copy.json`](content/en/copy.json). Keep `[TBD]` there until real values exist.
 

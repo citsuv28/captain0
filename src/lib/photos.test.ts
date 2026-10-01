@@ -1,7 +1,7 @@
 import { existsSync } from "node:fs";
 import { resolve } from "node:path";
 import { describe, expect, it } from "vitest";
-import { getPortfolio, getStock } from "./content";
+import { getHomeHeroes, getPhotos, getPortfolio, getStock, getWorkshop } from "./content";
 
 const PHOTO_ROOT = resolve(process.cwd(), "public/photos");
 
@@ -27,6 +27,34 @@ const REQUIRED = [
   "C0-B2-060-busteni-plop-negru-bubos-mappa.jpg",
   "C0-B2-061-busteni-plop-negru-bubos-mappa.jpg",
   "C0-B2-066-busteni-plop-negru-bubos-mappa.jpg",
+  "heroes/A/A01_bookmatched-mappa.jpg",
+  "heroes/A/A02_topdown-mappa-scara.jpg",
+  "heroes/A/A03_placa-mare-scara.jpg",
+  "heroes/A/A04_live-edge-curte.jpg",
+  "heroes/A/A05_pereche-atelier-topdown.jpg",
+  "heroes/A/A06_cookie-burl-atelier.jpg",
+  "heroes/A/A07_flame-burl-detail.png",
+  "heroes/B/B01_busteni-sectiune-scara.jpg",
+  "heroes/B/B02_burl-sectiune-marcaj.jpg",
+  "heroes/B/B03_busteni-scara-portret.jpg",
+  "heroes/B/B04_flitch-stive-placi.jpg",
+  "heroes/B/B05_semi-busteni-gigant.jpg",
+  "heroes/C/C01_incarcare-busteni-lanturi.jpg",
+  "heroes/C/C02_transport-camion-busteni.jpg",
+  "heroes/C/C03_atelier-selectie-placi.jpg",
+  "heroes/C/C04_macara-transport-B2-001.jpg",
+  "heroes/C/C05_utilaj-macara-B2-005.jpg",
+  "heroes/C/C06_utilaj-macara-B2-010.jpg",
+  "heroes/C/C07_macara-atelier-B2-062.jpg",
+  "heroes/C/C08_atelier-B2-022.jpg",
+  "heroes/C/C09_atelier-B2-025.jpg",
+  "heroes/D/D01_masa-epoxy-verde.jpg",
+  "heroes/D/D02_dining-mappa-captain0.jpg",
+  "heroes/D/D03_masa-lunga-outdoor.jpg",
+  "heroes/D/D04_masa-studio-mappa.png",
+  "heroes/E/E01_curte-busteni-iarna.jpg",
+  "heroes/E/E02_Vedere_ansamblu_1.jpg",
+  "heroes/E/E03_Vedere_ansamblu_2.jpg",
 ] as const;
 
 describe("workshop photo files", () => {
@@ -37,10 +65,7 @@ describe("workshop photo files", () => {
   });
 
   it("points every catalog item at a file that exists on disk", () => {
-    const srcs = [
-      ...getStock("en").items.map((item) => item.photo.src),
-      ...getPortfolio("en").items.map((item) => item.photo.src),
-    ];
+    const srcs = getPhotos().map((item) => item.photo.src);
 
     expect(new Set(srcs).size).toBe(srcs.length);
 
@@ -51,9 +76,17 @@ describe("workshop photo files", () => {
 
     expect(srcs).toEqual(
       expect.arrayContaining([
-        "/photos/C0-B2-060-busteni-plop-negru-bubos-mappa.jpg",
-        "/photos/C0-B1-042-rasina-plop-negru-bubos-mappa.jpg",
+        "/photos/heroes/A/A01_bookmatched-mappa.jpg",
+        "/photos/heroes/A/A02_topdown-mappa-scara.jpg",
+        "/photos/heroes/D/D04_masa-studio-mappa.png",
+        "/photos/heroes/E/E01_curte-busteni-iarna.jpg",
       ]),
+    );
+    expect(getHomeHeroes()).toHaveLength(16);
+    expect(getWorkshop()).toHaveLength(12);
+    expect(getStock("en").items.some((item) => item.id === "C0-A01")).toBe(true);
+    expect(getPortfolio("en").items.some((item) => item.id === "C0-D04")).toBe(
+      true,
     );
   });
 });

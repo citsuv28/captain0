@@ -1,13 +1,12 @@
 import Link from "next/link";
 import { CtaRow } from "@/components/CtaRow";
 import { PhotoMedia } from "@/components/PhotoMedia";
-import { getCopy, getPortfolio, getStock } from "@/lib/content";
+import { getCopy, getFeaturedHero, getHomeHeroes, homeHref } from "@/lib/content";
 
 export default function HomePage() {
   const copy = getCopy();
-  const stock = getStock();
-  const portfolio = getPortfolio();
-  const hero = stock.items.find((item) => item.id === "C0-A9") ?? stock.items[0];
+  const hero = getFeaturedHero();
+  const heroes = getHomeHeroes();
 
   return (
     <main id="main">
@@ -42,33 +41,22 @@ export default function HomePage() {
             id="gallery"
             className="font-mono text-[11px] uppercase tracking-[0.18em] text-ink-muted"
           >
-            Workshop photos
+            Curated heroes
           </h2>
           <p className="mt-3 max-w-2xl text-ink-muted">
-            Raw stock candidates and finished-table portfolio. Tables are not
-            the main SKU.
+            Raw stock heroes (lanes A–B) and a few finished-table examples
+            (lane D). Tables are not the main SKU.
           </p>
           <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {stock.items.map((item) => (
+            {heroes.map((item) => (
               <li key={item.id}>
-                <Link href="/stock" className="block">
+                <Link href={homeHref(item)} className="block">
                   <PhotoMedia
                     src={item.photo.src}
                     alt={item.photo.alt}
-                    caption={`Stock · ${item.id}`}
+                    caption={`${item.hero_lane === "D" ? "Portfolio" : "Stock"} · ${item.id}`}
                     className="aspect-[4/5]"
-                  />
-                </Link>
-              </li>
-            ))}
-            {portfolio.items.map((item) => (
-              <li key={item.id}>
-                <Link href="/portfolio" className="block">
-                  <PhotoMedia
-                    src={item.photo.src}
-                    alt={item.photo.alt}
-                    caption={`Portfolio · ${item.id}`}
-                    className="aspect-[4/5]"
+                    priority={item.id === "C0-A01"}
                   />
                 </Link>
               </li>

@@ -5,9 +5,12 @@ import {
   PHOTO_LANES,
   PHOTO_TYPES,
   getCopy,
+  getFeaturedHero,
+  getHomeHeroes,
   getPhotos,
   getPortfolio,
   getStock,
+  getWorkshop,
 } from "./content";
 
 const STOCK_IDS = [
@@ -105,7 +108,18 @@ describe("photo metadata schema", () => {
     const items = getPhotos();
     const ids = items.map((item) => item.id);
 
-    expect(ids).toEqual([...STOCK_IDS, ...PORTFOLIO_IDS]);
+    expect(ids).toEqual(expect.arrayContaining([...STOCK_IDS, ...PORTFOLIO_IDS]));
+    expect(ids).toEqual(
+      expect.arrayContaining([
+        "C0-A01",
+        "C0-A03",
+        "C0-B01",
+        "C0-B04",
+        "C0-C01",
+        "C0-D04",
+        "C0-E01",
+      ]),
+    );
 
     for (const item of items) {
       expect(PHOTO_TYPES).toContain(item.type);
@@ -114,7 +128,7 @@ describe("photo metadata schema", () => {
       expect(item).toHaveProperty("species_en");
       expect(item).toHaveProperty("notes");
       expect(item).not.toHaveProperty("price");
-      expect(item.photo.src).toMatch(/^\/photos\/C0-/);
+      expect(item.photo.src).toMatch(/^\/photos\//);
 
       for (const value of [
         item.dims.length,
@@ -136,7 +150,23 @@ describe("candidate stock listings", () => {
     const stock = getStock("en");
     const ids = stock.items.map((item) => item.id);
 
-    expect(ids).toEqual([...STOCK_IDS]);
+    expect(ids).toEqual(expect.arrayContaining([...STOCK_IDS]));
+    expect(ids).toEqual(
+      expect.arrayContaining([
+        "C0-A01",
+        "C0-A03",
+        "C0-A04",
+        "C0-A05",
+        "C0-A06",
+        "C0-A07",
+        "C0-B01",
+        "C0-B02",
+        "C0-B03",
+        "C0-B04",
+        "C0-B05",
+      ]),
+    );
+    expect(ids).not.toEqual(expect.arrayContaining(["C0-C01", "C0-E01", "C0-D04"]));
 
     for (const item of stock.items) {
       expect(["slab", "log", "veneer"]).toContain(item.type);
@@ -190,7 +220,8 @@ describe("portfolio examples", () => {
     const portfolio = getPortfolio("en");
     const ids = portfolio.items.map((item) => item.id);
 
-    expect(ids).toEqual([...PORTFOLIO_IDS]);
+    expect(ids).toEqual(expect.arrayContaining([...PORTFOLIO_IDS, "C0-D04"]));
+    expect(ids[0]).toBe("C0-B1-001");
 
     for (const item of portfolio.items) {
       expect(["table", "epoxy"]).toContain(item.type);
@@ -211,5 +242,39 @@ describe("portfolio examples", () => {
     expect(
       portfolio.items.find((item) => item.id === "C0-B1-001")?.species_en,
     ).toBe("");
+    expect(
+      portfolio.items.find((item) => item.id === "C0-D04")?.photo.src,
+    ).toBe("/photos/heroes/D/D04_masa-studio-mappa.png");
+  });
+});
+
+describe("curated hero set", () => {
+  it("puts A+B on stock, D on portfolio, and C+E on About only", () => {
+    const home = getHomeHeroes();
+    const workshop = getWorkshop();
+    const featured = getFeaturedHero();
+
+    expect(featured.id).toBe("C0-A01");
+    expect(featured.species_ro).toBe("plop negru bubos");
+    expect(home.map((item) => item.hero_lane)).toEqual([
+      ...Array(7).fill("A"),
+      ...Array(5).fill("B"),
+      ...Array(4).fill("D"),
+    ]);
+    expect(workshop).toHaveLength(12);
+    expect(workshop.every((item) => item.type === "workshop")).toBe(true);
+
+    const a06 = getStock("en").items.find((item) => item.id === "C0-A06");
+    expect(a06?.species_ro).toBe("");
+    expect(a06?.species_en).toBe("");
+    expect(a06?.dims.length).toBe("");
+
+    const b04 = getStock("en").items.find((item) => item.id === "C0-B04");
+    expect(b04?.type).toBe("veneer");
+    expect(b04?.lane).toBe("B_furnir");
+
+    const a02 = getStock("en").items.find((item) => item.id === "C0-B2-060");
+    expect(a02?.hero_lane).toBe("A");
+    expect(a02?.photo.src).toBe("/photos/heroes/A/A02_topdown-mappa-scara.jpg");
   });
 });
