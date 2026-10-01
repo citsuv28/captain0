@@ -68,8 +68,18 @@ English is the only locale shipped. A Romanian locale can be added later as `con
 
 ## Preview hosting
 
-GitHub Pages deploys from this preview branch (not `main`, not captain0.com):
+Clickable preview (noindex, not captain0.com):
 
-`https://citsuv28.github.io/captain0/`
+**https://temporary-fleet-juniper-ggwp543.vercel.app/**
 
-Connecting the repo to Vercel later will add `*.vercel.app` preview URLs. Do not attach the custom domain until Bogdan asks.
+| Page | URL |
+| --- | --- |
+| Home | https://temporary-fleet-juniper-ggwp543.vercel.app/ |
+| Stock | https://temporary-fleet-juniper-ggwp543.vercel.app/stock/ |
+| Portfolio | https://temporary-fleet-juniper-ggwp543.vercel.app/portfolio/ |
+| About | https://temporary-fleet-juniper-ggwp543.vercel.app/about/ |
+| Contact | https://temporary-fleet-juniper-ggwp543.vercel.app/contact/ |
+
+Keep this deployment (otherwise anonymous Vercel previews expire): [claim on Vercel](https://vercel.com/claim-deployment?code=c5ae96db-dd00-4996-b985-3ae79c238c13).
+
+For a lasting GitHub preview, the repo owner enables Pages once: **Settings → Pages → Source: GitHub Actions**. After that, this branch publishes to `https://citsuv28.github.io/captain0/` (still noindex, still not captain0.com). Importing the GitHub repo into a Vercel account also gives durable `*.vercel.app` URLs on every PR. Do not attach the custom domain until Bogdan asks.
