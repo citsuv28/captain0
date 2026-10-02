@@ -72,16 +72,16 @@ English is the only locale shipped. A Romanian locale can be added later as `con
 
 Clickable preview (noindex, not captain0.com):
 
-**https://temporary-rushing-vega-cz2ybre.vercel.app/**
+**https://temporary-swift-geode-peb0r3g.vercel.app/**
 
 | Page | URL |
 | --- | --- |
-| Home | https://temporary-rushing-vega-cz2ybre.vercel.app/ |
-| Stock | https://temporary-rushing-vega-cz2ybre.vercel.app/stock/ |
-| Portfolio | https://temporary-rushing-vega-cz2ybre.vercel.app/portfolio/ |
-| About | https://temporary-rushing-vega-cz2ybre.vercel.app/about/ |
-| Contact | https://temporary-rushing-vega-cz2ybre.vercel.app/contact/ |
+| Home | https://temporary-swift-geode-peb0r3g.vercel.app/ |
+| Stock | https://temporary-swift-geode-peb0r3g.vercel.app/stock/ |
+| Portfolio | https://temporary-swift-geode-peb0r3g.vercel.app/portfolio/ |
+| About | https://temporary-swift-geode-peb0r3g.vercel.app/about/ |
+| Contact | https://temporary-swift-geode-peb0r3g.vercel.app/contact/ |
 
-Keep this deployment (otherwise anonymous Vercel previews expire): [claim on Vercel](https://vercel.com/claim-deployment?code=51ae1712-375a-4757-adec-55864a6934df).
+Keep this deployment (otherwise anonymous Vercel previews expire): [claim on Vercel](https://vercel.com/claim-deployment?code=a154b455-dd92-4876-b6c3-b2c3bef85b02).
 
 For a lasting GitHub preview, the repo owner enables Pages once: **Settings → Pages → Source: GitHub Actions**. After that, this branch publishes to `https://citsuv28.github.io/captain0/` (still noindex, still not captain0.com). Importing the GitHub repo into a Vercel account also gives durable `*.vercel.app` URLs on every PR. Do not attach the custom domain until Bogdan asks.
