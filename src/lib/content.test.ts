@@ -101,6 +101,11 @@ describe("locked English marketing copy", () => {
     expect(copy.stock.intro).toBe(
       "Every piece in stock is a one-off. Browse → message with slab ID + postcode → freight quote → pay → crate/pallet from Romania with origin docs. Shipping always quoted separately.",
     );
+    expect(copy.stock.empty).toBe(
+      "No stock in range — special request / sourcing",
+    );
+    expect(copy.stock.filterHintRo).toBe("Căutare după dimensiuni (cm).");
+    expect(copy.brand.tagline).toBe("Rare wood concierge");
     expect(copy.contact.email).toBe("[TBD — e.g. contact@captain0.com]");
     expect(copy.contact.whatsapp).toBe("[TBD]");
     expect(copy.contact.location).toBe(
@@ -180,13 +185,15 @@ describe("candidate stock listings", () => {
     const a09 = stock.items.find((item) => item.id === "C0-A09");
     expect(a09?.dims.length).toBe("350 cm");
     expect(a09?.dims.width).toBe("125 cm");
-    expect(a09?.dims.thickness).toBe("");
+    expect(a09?.dims.thickness).toBe("6 cm");
+    expect(a09?.notes.toLowerCase()).toMatch(/demo|estimate|saturday/);
     expect(a09?.photo.src).toBe("/photos/stock/A09_350x125.jpg");
 
     const a06 = stock.items.find((item) => item.id === "C0-A06");
     expect(a06?.species_ro).toBe("");
     expect(a06?.species_en).toBe("");
-    expect(a06?.dims.length).toBe("");
+    expect(a06?.dims.length).toBe("95 cm");
+    expect(a06?.notes.toLowerCase()).toMatch(/demo|estimate|saturday/);
 
     const b04 = stock.items.find((item) => item.id === "C0-B04");
     expect(b04?.type).toBe("veneer");
