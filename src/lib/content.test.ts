@@ -63,6 +63,8 @@ describe("locked English marketing copy", () => {
   it("uses the approved hero, subhead, and value props verbatim", () => {
     const copy = getCopy("en");
 
+    expect(copy.brand.tagline).toBe("Rare wood concierge");
+    expect(copy.home.tagline).toBe("Rare wood concierge");
     expect(copy.home.hero).toBe(
       "Raw European wood slabs from Neamț, Romania.",
     );
@@ -88,6 +90,11 @@ describe("locked English marketing copy", () => {
   it("keeps the approved about, stock intro, and contact lines, including [TBD] gaps", () => {
     const copy = getCopy("en");
 
+    expect(copy.about.line).toBe(
+      "Rare wood concierge. Slabs, logs and veneer, and special requests.",
+    );
+    expect(copy.about.lineRo).toBe("Concierge pentru lemn rar.");
+    expect(copy.about.line.toLowerCase()).not.toMatch(/epoxy shop/);
     expect(copy.about.body).toBe(
       "Captain0 is a family workshop in Piatra Neamț, Romania. We buy standing or fallen timber locally, mill it ourselves, and dry it in our own yard. Primary product is raw material: live-edge slabs, burl, blanks, and bookmatched pairs — especially European poplar burl (mappa), European walnut (Juglans regia), and European oak. We have been cutting and drying our own timber for [TBD] years. Finished epoxy river tables are made from the same stock; they show what the wood can do. They are not the main SKU.",
     );

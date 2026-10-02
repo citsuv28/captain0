@@ -3,6 +3,9 @@
     "title": "Captain0 — Raw European wood from Neamț, Romania",
     "description": "We cut and dry our own timber — mappa (poplar) burl, European walnut, and oak. Sold as raw material to makers, luthiers, and workshops. Finished epoxy tables are portfolio only."
   },
+  "brand": {
+    "tagline": "Rare wood concierge"
+  },
   "nav": [
     { "href": "/", "label": "Home" },
     { "href": "/stock", "label": "Stock" },
@@ -12,6 +15,7 @@
   ],
   "home": {
     "kicker": "Family workshop · Piatra Neamț, Romania",
+    "tagline": "Rare wood concierge",
     "hero": "Raw European wood slabs from Neamț, Romania.",
     "subhead": "We cut and dry our own timber — mappa (poplar) burl, European walnut, and oak. Sold as raw material to makers, luthiers, and workshops. Finished epoxy tables are portfolio only.",
     "valueProps": [
@@ -31,6 +35,8 @@
   },
   "about": {
     "title": "About",
+    "line": "Rare wood concierge. Slabs, logs and veneer, and special requests.",
+    "lineRo": "Concierge pentru lemn rar.",
     "body": "Captain0 is a family workshop in Piatra Neamț, Romania. We buy standing or fallen timber locally, mill it ourselves, and dry it in our own yard. Primary product is raw material: live-edge slabs, burl, blanks, and bookmatched pairs — especially European poplar burl (mappa), European walnut (Juglans regia), and European oak. We have been cutting and drying our own timber for [TBD] years. Finished epoxy river tables are made from the same stock; they show what the wood can do. They are not the main SKU."
   },
   "stock": {

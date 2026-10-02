@@ -21,6 +21,9 @@ export default function HomePage() {
           <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-ink-muted">
             {copy.home.kicker}
           </p>
+          <p className="mt-3 font-display text-2xl text-copper sm:text-3xl">
+            {copy.home.tagline}
+          </p>
           <h1 className="mt-4 font-display text-[2.35rem] leading-[1.12] text-ink sm:text-5xl lg:text-[3.4rem]">
             {copy.home.hero}
           </h1>

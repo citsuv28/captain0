@@ -12,7 +12,7 @@ export function Header() {
             Captain0
           </span>
           <span className="block truncate font-mono text-[10px] uppercase tracking-[0.18em] text-ink-muted">
-            Raw wood · Piatra Neamț
+            {copy.brand.tagline}
           </span>
         </Link>
 
