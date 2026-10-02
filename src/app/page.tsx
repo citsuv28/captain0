@@ -1,7 +1,13 @@
 import Link from "next/link";
 import { CtaRow } from "@/components/CtaRow";
 import { PhotoMedia } from "@/components/PhotoMedia";
-import { getCopy, getFeaturedHero, getHomeHeroes, homeHref } from "@/lib/content";
+import {
+  FEATURED_ID,
+  getCopy,
+  getFeaturedHero,
+  getHomeHeroes,
+  homeHref,
+} from "@/lib/content";
 
 export default function HomePage() {
   const copy = getCopy();
@@ -41,11 +47,11 @@ export default function HomePage() {
             id="gallery"
             className="font-mono text-[11px] uppercase tracking-[0.18em] text-ink-muted"
           >
-            Curated heroes
+            Curated set
           </h2>
           <p className="mt-3 max-w-2xl text-ink-muted">
-            Raw stock heroes (lanes A–B) and a few finished-table examples
-            (lane D). Tables are not the main SKU.
+            Six raw stock photos and six finished-table examples. Tables are
+            not the main SKU and are not for sale as stock.
           </p>
           <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {heroes.map((item) => (
@@ -56,7 +62,7 @@ export default function HomePage() {
                     alt={item.photo.alt}
                     caption={`${item.hero_lane === "D" ? "Portfolio" : "Stock"} · ${item.id}`}
                     className="aspect-[4/5]"
-                    priority={item.id === "C0-A01"}
+                    priority={item.id === FEATURED_ID}
                   />
                 </Link>
               </li>

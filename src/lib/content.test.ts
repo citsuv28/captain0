@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import {
   DEFAULT_LOCALE,
+  FEATURED_ID,
   LOCALES,
   PHOTO_LANES,
   PHOTO_TYPES,
@@ -14,30 +15,41 @@ import {
 } from "./content";
 
 const STOCK_IDS = [
-  "C0-A9",
-  "C0-S01",
-  "C0-S02",
-  "C0-W01",
-  "C0-B2-009",
-  "C0-B2-034",
-  "C0-B2-060",
-  "C0-B2-061",
-  "C0-B2-066",
+  "C0-A03",
+  "C0-A04",
+  "C0-A02",
+  "C0-A09",
+  "C0-A06",
+  "C0-B04",
 ] as const;
 
 const PORTFOLIO_IDS = [
   "C0-P01",
   "C0-P02",
   "C0-P03",
-  "C0-B1-001",
-  "C0-B1-002",
-  "C0-B1-003",
-  "C0-B1-013",
-  "C0-B1-022",
-  "C0-B1-025",
-  "C0-B1-026",
-  "C0-B1-042",
-  "C0-B2-033",
+  "C0-P04",
+  "C0-P05",
+  "C0-P06",
+] as const;
+
+const REMOVED_IDS = [
+  "C0-A01",
+  "C0-A05",
+  "C0-A07",
+  "C0-B01",
+  "C0-B02",
+  "C0-B03",
+  "C0-B05",
+  "C0-C01",
+  "C0-C02",
+  "C0-C04",
+  "C0-C05",
+  "C0-E01",
+  "C0-E02",
+  "C0-E03",
+  "C0-D04",
+  "C0-B2-009",
+  "C0-S01",
 ] as const;
 
 describe("locale catalog", () => {
@@ -104,22 +116,13 @@ describe("locked English marketing copy", () => {
 });
 
 describe("photo metadata schema", () => {
-  it("uses admin fields on every photo and does not invent numbers", () => {
+  it("ships only the 12 curated photos and does not invent numbers", () => {
     const items = getPhotos();
     const ids = items.map((item) => item.id);
 
-    expect(ids).toEqual(expect.arrayContaining([...STOCK_IDS, ...PORTFOLIO_IDS]));
-    expect(ids).toEqual(
-      expect.arrayContaining([
-        "C0-A01",
-        "C0-A03",
-        "C0-B01",
-        "C0-B04",
-        "C0-C01",
-        "C0-D04",
-        "C0-E01",
-      ]),
-    );
+    expect(ids).toEqual([...STOCK_IDS, ...PORTFOLIO_IDS]);
+    expect(ids).toHaveLength(12);
+    expect(ids).not.toEqual(expect.arrayContaining([...REMOVED_IDS]));
 
     for (const item of items) {
       expect(PHOTO_TYPES).toContain(item.type);
@@ -128,7 +131,8 @@ describe("photo metadata schema", () => {
       expect(item).toHaveProperty("species_en");
       expect(item).toHaveProperty("notes");
       expect(item).not.toHaveProperty("price");
-      expect(item.photo.src).toMatch(/^\/photos\//);
+      expect(item.photo.src).toMatch(/^\/photos\/(stock|portfolio)\//);
+      expect(item.type).not.toBe("workshop");
 
       for (const value of [
         item.dims.length,
@@ -146,27 +150,11 @@ describe("photo metadata schema", () => {
 });
 
 describe("candidate stock listings", () => {
-  it("keeps raw busteni/log listings with empty unfilled fields", () => {
+  it("keeps the six RAW photos in manifest order with empty unfilled fields", () => {
     const stock = getStock("en");
     const ids = stock.items.map((item) => item.id);
 
-    expect(ids).toEqual(expect.arrayContaining([...STOCK_IDS]));
-    expect(ids).toEqual(
-      expect.arrayContaining([
-        "C0-A01",
-        "C0-A03",
-        "C0-A04",
-        "C0-A05",
-        "C0-A06",
-        "C0-A07",
-        "C0-B01",
-        "C0-B02",
-        "C0-B03",
-        "C0-B04",
-        "C0-B05",
-      ]),
-    );
-    expect(ids).not.toEqual(expect.arrayContaining(["C0-C01", "C0-E01", "C0-D04"]));
+    expect(ids).toEqual([...STOCK_IDS]);
 
     for (const item of stock.items) {
       expect(["slab", "log", "veneer"]).toContain(item.type);
@@ -176,105 +164,69 @@ describe("candidate stock listings", () => {
       expect(item.year).toBe("");
     }
 
-    const a9 = stock.items.find((item) => item.id === "C0-A9");
-    expect(a9?.species_ro).toBe("plop negru bubos");
-    expect(a9?.species_en).toMatch(/mappa/i);
-    expect(a9?.type).toBe("slab");
-    expect(a9?.lane).toBe("A_placi");
-    expect(a9?.dims.length).toBe("350 cm");
-    expect(a9?.dims.width).toBe("125 cm");
-    expect(a9?.dims.thickness).toBe("");
-    expect(a9?.photo.src).toBe("/photos/C0-A9-figured-poplar-350x125.png");
+    const a03 = stock.items[0];
+    expect(a03?.id).toBe("C0-A03");
+    expect(a03?.species_ro).toBe("plop negru bubos");
+    expect(a03?.species_en).toMatch(/mappa/i);
+    expect(a03?.photo.src).toBe("/photos/stock/A03_placa-mare-scara.jpg");
 
-    const s01 = stock.items.find((item) => item.id === "C0-S01");
-    expect(s01?.species_en.toLowerCase()).toContain("oak or poplar — confirm");
-    expect(s01?.species_ro).toBe("");
-    expect(s01?.dims.length).toBe("");
-    expect(s01?.photo.src).toBe("/photos/C0-S01-wide-slab-yard.png");
+    const a09 = stock.items.find((item) => item.id === "C0-A09");
+    expect(a09?.dims.length).toBe("350 cm");
+    expect(a09?.dims.width).toBe("125 cm");
+    expect(a09?.dims.thickness).toBe("");
+    expect(a09?.photo.src).toBe("/photos/stock/A09_350x125.jpg");
 
-    const s02 = stock.items.find((item) => item.id === "C0-S02");
-    expect(s02?.species_ro).toBe("");
-    expect(s02?.species_en).toBe("");
-    expect(s02?.photo.src).toBe("/photos/C0-S02-pale-slab-shop.png");
+    const a06 = stock.items.find((item) => item.id === "C0-A06");
+    expect(a06?.species_ro).toBe("");
+    expect(a06?.species_en).toBe("");
+    expect(a06?.dims.length).toBe("");
 
-    const w01 = stock.items.find((item) => item.id === "C0-W01");
-    expect(w01?.title).toBe("European walnut burl cookie");
-    expect(w01?.species_ro).toBe("nuc");
-    expect(w01?.lane).toBe("C_special");
-    expect(w01?.photo.src).toBe("/photos/C0-W01-walnut-burl-cookie.png");
-
-    const nuc = stock.items.find((item) => item.id === "C0-B2-034");
-    expect(nuc?.species_ro).toBe("nuc");
-    expect(nuc?.species_en.toLowerCase()).toContain("walnut");
-    expect(nuc?.photo.src).toBe("/photos/C0-B2-034-raw-slab-nuc.jpg");
-
-    const log = stock.items.find((item) => item.id === "C0-B2-009");
-    expect(log?.type).toBe("log");
-    expect(log?.species_ro).toBe("");
-    expect(log?.species_en).toBe("");
+    const b04 = stock.items.find((item) => item.id === "C0-B04");
+    expect(b04?.type).toBe("veneer");
+    expect(b04?.lane).toBe("B_furnir");
+    expect(b04?.species_ro).toBe("");
   });
 });
 
 describe("portfolio examples", () => {
-  it("keeps finished tables as portfolio, not the primary product", () => {
+  it("keeps the six finished pieces as portfolio, not stock SKUs", () => {
     const portfolio = getPortfolio("en");
     const ids = portfolio.items.map((item) => item.id);
 
-    expect(ids).toEqual(expect.arrayContaining([...PORTFOLIO_IDS, "C0-D04"]));
-    expect(ids[0]).toBe("C0-B1-001");
+    expect(ids).toEqual([...PORTFOLIO_IDS]);
 
     for (const item of portfolio.items) {
       expect(["table", "epoxy"]).toContain(item.type);
       expect(item.lane).toBe("C_special");
       expect(item.notes.toLowerCase()).toMatch(/portfolio/);
       expect(item.notes.toLowerCase()).toMatch(/not the main sku/);
+      expect(item.notes.toLowerCase()).toMatch(/not for sale as stock/);
     }
 
     expect(
       portfolio.items.find((item) => item.id === "C0-P01")?.photo.src,
-    ).toBe("/photos/C0-P01-mappa-finished.png");
+    ).toBe("/photos/portfolio/P01_birou-captain0.png");
     expect(
-      portfolio.items.find((item) => item.id === "C0-B1-042")?.type,
+      portfolio.items.find((item) => item.id === "C0-P04")?.type,
     ).toBe("epoxy");
     expect(
-      portfolio.items.find((item) => item.id === "C0-B1-042")?.species_ro,
-    ).toBe("plop negru bubos");
-    expect(
-      portfolio.items.find((item) => item.id === "C0-B1-001")?.species_en,
+      portfolio.items.find((item) => item.id === "C0-P06")?.species_ro,
     ).toBe("");
-    expect(
-      portfolio.items.find((item) => item.id === "C0-D04")?.photo.src,
-    ).toBe("/photos/heroes/D/D04_masa-studio-mappa.png");
   });
 });
 
-describe("curated hero set", () => {
-  it("puts A+B on stock, D on portfolio, and C+E on About only", () => {
+describe("curated 12-photo set", () => {
+  it("features A03 on Home and keeps workshop galleries empty", () => {
     const home = getHomeHeroes();
-    const workshop = getWorkshop();
     const featured = getFeaturedHero();
 
-    expect(featured.id).toBe("C0-A01");
+    expect(FEATURED_ID).toBe("C0-A03");
+    expect(featured.id).toBe("C0-A03");
     expect(featured.species_ro).toBe("plop negru bubos");
-    expect(home.map((item) => item.hero_lane)).toEqual([
-      ...Array(7).fill("A"),
-      ...Array(5).fill("B"),
-      ...Array(4).fill("D"),
+    expect(home.map((item) => item.id)).toEqual([
+      ...STOCK_IDS,
+      ...PORTFOLIO_IDS,
     ]);
-    expect(workshop).toHaveLength(12);
-    expect(workshop.every((item) => item.type === "workshop")).toBe(true);
-
-    const a06 = getStock("en").items.find((item) => item.id === "C0-A06");
-    expect(a06?.species_ro).toBe("");
-    expect(a06?.species_en).toBe("");
-    expect(a06?.dims.length).toBe("");
-
-    const b04 = getStock("en").items.find((item) => item.id === "C0-B04");
-    expect(b04?.type).toBe("veneer");
-    expect(b04?.lane).toBe("B_furnir");
-
-    const a02 = getStock("en").items.find((item) => item.id === "C0-B2-060");
-    expect(a02?.hero_lane).toBe("A");
-    expect(a02?.photo.src).toBe("/photos/heroes/A/A02_topdown-mappa-scara.jpg");
+    expect(getWorkshop()).toEqual([]);
   });
 });

@@ -25,14 +25,14 @@ Open [http://localhost:3000](http://localhost:3000).
 
 All stock and portfolio cards read from **one JSON file**: [`content/photos.json`](content/photos.json). You do not need to touch React components.
 
-Example — set species on the mappa timber photo `C0-B2-060`:
+Example — set species on the Home featured slab `C0-A03`:
 
 1. Open `content/photos.json`.
-2. Find the object whose `"id"` is `"C0-B2-060"`.
+2. Find the object whose `"id"` is `"C0-A03"`.
 3. Change the species fields (leave other blanks as `""` if still unknown):
 
 ```json
-"id": "C0-B2-060",
+"id": "C0-A03",
 "species_ro": "plop negru bubos",
 "species_en": "European poplar burl (mappa)",
 "type": "slab",
@@ -42,7 +42,7 @@ Example — set species on the mappa timber photo `C0-B2-060`:
   "width": "",
   "thickness": ""
 },
-"notes": "Busteni / raw material. Inventory fields incomplete."
+"notes": "Home featured. Huge live-edge mappa slab held for scale. Inventory fields incomplete."
 ```
 
 4. Save. Refresh the site. `/stock` cards use `type` `slab`, `log`, or `veneer`. `/portfolio` cards use `type` `table` or `epoxy`.
@@ -50,10 +50,11 @@ Example — set species on the mappa timber photo `C0-B2-060`:
 **Rules**
 
 - Empty string `""` means “not filled yet”. Do not invent lengths, moisture, weight, or prices.
-- `type` must be one of: `slab` | `log` | `veneer` | `table` | `epoxy` | `workshop`.
+- `type` must be one of: `slab` | `log` | `veneer` | `table` | `epoxy`.
 - `lane` must be one of: `A_placi` | `B_furnir` | `C_special`.
-- `hero_lane` A+B → Stock, D → Portfolio, C+E → About. Home prefers A+B+D.
-- Photos themselves live in [`public/photos/`](public/photos/) and [`public/photos/heroes/`](public/photos/heroes/).
+- `sort` is display order. Home featured is `C0-A03`. Stock is A03, A04, A02, A09, A06, B04. Portfolio is P01–P06.
+- The site photo set is these 12 files only, in [`public/photos/stock/`](public/photos/stock/) and [`public/photos/portfolio/`](public/photos/portfolio/). No workshop, crane, or collage heroes.
+
 
 Marketing sentences (hero, about, contact placeholders) stay in [`content/en/copy.json`](content/en/copy.json). Keep `[TBD]` there until real values exist.
 
