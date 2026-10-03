@@ -12,13 +12,13 @@ export function CtaRow({ className = "" }: CtaRowProps) {
     <div className={`flex flex-col gap-3 sm:flex-row ${className}`}>
       <Link
         href="/stock"
-        className="text-sm tracking-wide text-casa-ink underline decoration-white/30 underline-offset-4"
+        className="text-sm tracking-wide text-ink underline decoration-rule underline-offset-4"
       >
         {copy.cta.requestStockList}
       </Link>
       <Link
         href="/contact"
-        className="text-sm tracking-wide text-casa-ink underline decoration-white/30 underline-offset-4"
+        className="text-sm tracking-wide text-ink underline decoration-rule underline-offset-4"
       >
         {copy.cta.askFreightQuote}
       </Link>

@@ -13,7 +13,7 @@ export default function AboutPage() {
   return (
     <main id="main" className="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:py-16">
       <PageIntro kicker={copy.brand.tagline} title={copy.about.title}>
-        <p className="font-display text-2xl text-casa-ink">{copy.about.line}</p>
+        <p className="font-display text-2xl text-ink">{copy.about.line}</p>
         <p className="mt-2">{copy.about.lineRo}</p>
         <p className="mt-5">{copy.about.body}</p>
       </PageIntro>

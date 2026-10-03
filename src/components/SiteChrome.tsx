@@ -1,79 +1,85 @@
-import Link from "next/link";
-import { getCopy } from "@/lib/content";
+"use client";
 
-const LANE_HREFS = new Set(["/stock", "/logs", "/portfolio"]);
-const QUIET_HREFS = new Set(["/about", "/contact"]);
+import Link from "next/link";
+import { useState } from "react";
+import { useProject } from "@/components/ProjectProvider";
+
+const NAV = [
+  { href: "/#collections", label: "Collections" },
+  { href: "/#story", label: "Our story" },
+  { href: "/#journey", label: "The journey" },
+];
 
 export function Header() {
-  const copy = getCopy();
-  const lanes = copy.nav.filter((item) => LANE_HREFS.has(item.href));
-  const quiet = copy.nav.filter((item) => QUIET_HREFS.has(item.href));
+  const { brief } = useProject();
+  const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-20 border-b border-white/10 bg-casa/90 backdrop-blur">
-      <div className="mx-auto flex items-center justify-between gap-3 px-4 py-3 sm:px-6">
-        <Link href="/" className="font-display text-lg tracking-wide text-casa-ink">
-          Captain0
+    <header>
+      <Link className="brand" href="/">
+        Captain0
+        <span>RARE WOOD · ROMANIA</span>
+      </Link>
+      <nav className="mainnav" aria-label="Main navigation">
+        {NAV.map((item) => (
+          <Link key={item.href} href={item.href}>
+            {item.label}
+          </Link>
+        ))}
+      </nav>
+      <Link className="navcta" href="/#enquiry">
+        Your project <span>{brief.references.length}</span>
+      </Link>
+      <button
+        type="button"
+        className="menu-toggle"
+        aria-label="Open navigation"
+        aria-expanded={open}
+        aria-controls="mobile-nav"
+        onClick={() => setOpen((current) => !current)}
+      >
+        Menu
+      </button>
+      <nav
+        id="mobile-nav"
+        className="mobile-nav"
+        hidden={!open}
+        aria-label="Mobile navigation"
+      >
+        {NAV.map((item) => (
+          <Link key={item.href} href={item.href} onClick={() => setOpen(false)}>
+            {item.label}
+          </Link>
+        ))}
+        <Link href="/stock" onClick={() => setOpen(false)}>
+          Rare slabs
         </Link>
-        <nav aria-label="Primary" className="flex items-center gap-3 sm:gap-6">
-          {lanes.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="font-mono text-[11px] uppercase tracking-[0.16em] text-casa-ink"
-            >
-              {item.label}
-            </Link>
-          ))}
-        </nav>
-        <nav aria-label="House" className="hidden items-center gap-5 md:flex">
-          {quiet.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="font-mono text-[11px] uppercase tracking-[0.16em] text-casa-muted hover:text-casa-ink"
-            >
-              {item.label}
-            </Link>
-          ))}
-        </nav>
-        <details className="relative md:hidden">
-          <summary className="cursor-pointer font-mono text-[11px] uppercase tracking-[0.16em] text-casa-muted">
-            Menu
-          </summary>
-          <div className="absolute right-0 mt-2 w-40 border border-white/15 bg-casa p-3">
-            <nav aria-label="Mobile" className="flex flex-col gap-2">
-              {quiet.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className="font-mono text-[11px] uppercase tracking-[0.16em] text-casa-ink"
-                >
-                  {item.label}
-                </Link>
-              ))}
-            </nav>
-          </div>
-        </details>
-      </div>
+        <Link href="/logs" onClick={() => setOpen(false)}>
+          Logs
+        </Link>
+        <Link href="/portfolio" onClick={() => setOpen(false)}>
+          Furniture
+        </Link>
+        <Link href="/#enquiry" onClick={() => setOpen(false)}>
+          Your project
+        </Link>
+      </nav>
     </header>
   );
 }
 
 export function Footer() {
-  const copy = getCopy();
-
   return (
-    <footer className="shrink-0 border-t border-white/10 text-casa-muted">
-      <div className="mx-auto flex max-w-6xl flex-col gap-1 px-4 py-3 sm:flex-row sm:items-baseline sm:justify-between sm:px-6">
-        <p className="font-mono text-[11px] uppercase tracking-[0.16em]">
-          {copy.footer.mark} · {copy.footer.place}
-        </p>
-        <p className="max-w-md text-[11px] leading-relaxed">{copy.footer.productNote}</p>
-      </div>
-      <p className="px-4 pb-3 font-mono text-[10px] uppercase tracking-[0.14em] sm:px-6">
-        Preview site — not the live captain0.com domain
-      </p>
+    <footer>
+      <Link className="brand" href="/">
+        Captain0
+        <span>RARE WOOD · ROMANIA</span>
+      </Link>
+      <p>A family story, written in wood.</p>
+      <span>
+        Piatra Neamț · Romania
+        <br />© Captain0
+      </span>
     </footer>
   );
 }
