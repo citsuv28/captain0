@@ -5,13 +5,16 @@ import {
   LOCALES,
   PHOTO_LANES,
   PHOTO_TYPES,
+  getBookmatchRecords,
   getCopy,
   getFeaturedHero,
   getHomeHeroes,
   getPhotos,
   getPortfolio,
   getStock,
+  getStockListings,
   getWorkshop,
+  resolveStockListings,
 } from "./content";
 
 const STOCK_IDS = [
@@ -185,20 +188,115 @@ describe("candidate stock listings", () => {
     const a09 = stock.items.find((item) => item.id === "C0-A09");
     expect(a09?.dims.length).toBe("350 cm");
     expect(a09?.dims.width).toBe("125 cm");
-    expect(a09?.dims.thickness).toBe("6 cm");
-    expect(a09?.notes.toLowerCase()).toMatch(/demo|estimate|saturday/);
+    expect(a09?.dims.thickness).toBe("");
+    expect(a09?.dims.length_basis).toBe("chalk");
+    expect(a09?.dims.width_basis).toBe("chalk");
+    expect(a09?.dims.thickness_basis).toBe("");
+    expect(a09?.notes.toLowerCase()).toMatch(/chalk/);
+    expect(a09?.notes.toLowerCase()).toMatch(/thickness is unknown/);
     expect(a09?.photo.src).toBe("/photos/stock/A09_350x125.jpg");
+
+    for (const id of ["C0-A03", "C0-A04", "C0-A02", "C0-A06", "C0-B04"] as const) {
+      const item = stock.items.find((entry) => entry.id === id);
+      expect(item?.dims.length_basis).toBe("demo");
+      expect(item?.dims.width_basis).toBe("demo");
+      expect(item?.dims.thickness_basis).toBe("demo");
+      expect(item?.notes.toLowerCase()).toMatch(/demo|estimate/);
+      expect(item?.dims.thickness.trim()).not.toBe("");
+    }
 
     const a06 = stock.items.find((item) => item.id === "C0-A06");
     expect(a06?.species_ro).toBe("");
     expect(a06?.species_en).toBe("");
     expect(a06?.dims.length).toBe("95 cm");
-    expect(a06?.notes.toLowerCase()).toMatch(/demo|estimate|saturday/);
 
     const b04 = stock.items.find((item) => item.id === "C0-B04");
     expect(b04?.type).toBe("veneer");
     expect(b04?.lane).toBe("B_furnir");
     expect(b04?.species_ro).toBe("");
+  });
+});
+
+describe("bookmatch pairs", () => {
+  it("ships no confirmed pair and keeps the six pieces as singles", () => {
+    expect(getBookmatchRecords()).toEqual([]);
+
+    const listings = getStockListings();
+    expect(listings).toHaveLength(6);
+    expect(listings.map((listing) => listing.kind)).toEqual([
+      "single",
+      "single",
+      "single",
+      "single",
+      "single",
+      "single",
+    ]);
+    expect(
+      listings.map((listing) =>
+        listing.kind === "single" ? listing.item.id : listing.id,
+      ),
+    ).toEqual([...STOCK_IDS]);
+
+    const catalog = JSON.stringify(getPhotos()) + JSON.stringify(getBookmatchRecords());
+    expect(catalog).not.toMatch(/price|€|\$\d/i);
+    expect(catalog).not.toContain("C0-A01");
+  });
+
+  it("renders a confirmed pair as one set and refuses invented partners", () => {
+    const stock = getStock().items;
+    const [first, second] = stock;
+    if (!first || !second) {
+      throw new Error("expected the locked stock pieces");
+    }
+
+    const paired = resolveStockListings(stock, [
+      {
+        id: "C0-BM-TEST",
+        pieceIds: [first.id, second.id],
+        notes: "",
+        confirmed: true,
+      },
+    ]);
+    expect(paired.filter((listing) => listing.kind === "bookmatch")).toHaveLength(1);
+    expect(paired).toHaveLength(5);
+    expect(
+      paired.some(
+        (listing) => listing.kind === "single" && listing.item.id === first.id,
+      ),
+    ).toBe(false);
+
+    const unconfirmed = resolveStockListings(stock, [
+      {
+        id: "C0-BM-DRAFT",
+        pieceIds: [first.id, second.id],
+        notes: "not confirmed",
+        confirmed: false,
+      },
+    ]);
+    expect(unconfirmed.every((listing) => listing.kind === "single")).toBe(true);
+    expect(unconfirmed).toHaveLength(6);
+
+    expect(() =>
+      resolveStockListings(stock, [
+        {
+          id: "C0-BM-A01",
+          pieceIds: ["C0-A01", first.id],
+          notes: "",
+          confirmed: true,
+        },
+      ]),
+    ).toThrow(/in-stock/);
+
+    expect(() =>
+      resolveStockListings([...stock, ...getPortfolio().items], [
+        {
+          id: "C0-BM-PORTFOLIO",
+          pieceIds: ["C0-P01", "C0-P02"],
+          notes: "",
+          confirmed: true,
+        },
+      ]),
+    ).toThrow(/in-stock/);
   });
 });
 

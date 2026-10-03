@@ -13,7 +13,7 @@ export function SlabFromQuery() {
       role="status"
       className="mt-8 max-w-xl border-l-4 border-forest bg-paper-2/70 px-4 py-3 text-sm"
     >
-      Slab ID from catalog: <span className="font-mono font-medium">{slab}</span>
+      Catalog ID: <span className="font-mono font-medium">{slab}</span>
       . Include this ID and your postcode when you write.
     </p>
   );

@@ -38,18 +38,25 @@ Example — set species on the Home featured slab `C0-A03`:
 "type": "slab",
 "lane": "A_placi",
 "dims": {
-  "length": "",
-  "width": "",
-  "thickness": ""
+  "length": "430 cm",
+  "width": "175 cm",
+  "thickness": "8 cm",
+  "length_basis": "demo",
+  "width_basis": "demo",
+  "thickness_basis": "demo"
 },
-"notes": "Home featured. Huge live-edge mappa slab held for scale. Inventory fields incomplete."
+"notes": "Home featured. Huge live-edge mappa slab held for scale. Demo/estimate dims. Not a measured ticket."
 ```
 
 4. Save. Refresh the site. `/stock` cards use `type` `slab`, `log`, or `veneer`. `/portfolio` cards use `type` `table` or `epoxy`.
 
 **Rules**
 
-- Empty string `""` means “not filled yet”. Do not invent lengths, moisture, weight, or prices.
+- Empty string `""` means “not filled yet”. Do not invent lengths, moisture, weight, drying method, or prices.
+- `notes` is the public note line on the card. Leave it `""` when there is nothing to say.
+- A filled dimension needs `length_basis` / `width_basis` / `thickness_basis`: `demo` (estimate), `chalk` (written on the piece), or `measured` (a real ticket). `C0-A09` is chalk `350 cm` × `125 cm` with thickness left `""`. Do not fill that thickness.
+- Stock cards show the public piece ID (`C0-A03` and the rest). There is no separate price field.
+- A bookmatch is two stock pieces shown as one set. Confirmed pairs go in `bookmatches` (see below). The array is empty: no pair is confirmed, `C0-A01` stays out of stock, and the six current pieces stay singles.
 - `type` must be one of: `slab` | `log` | `veneer` | `table` | `epoxy`.
 - `lane` must be one of: `A_placi` | `B_furnir` | `C_special`.
 - `sort` is display order. Home featured is `C0-A03`. Stock is A03, A04, A02, A09, A06, B04. Portfolio is P01–P06.
@@ -58,7 +65,28 @@ Example — set species on the Home featured slab `C0-A03`:
 
 Marketing sentences (hero, about, contact placeholders) stay in [`content/en/copy.json`](content/en/copy.json). Keep `[TBD]` there until real values exist.
 
-English is the only locale shipped. A Romanian locale can be added later as `content/ro/` — do not invent Romanian marketing copy until it is provided. `species_ro` on photo cards is a per-piece label, not a full locale.
+## Bookmatch pairs
+
+`bookmatches` in [`content/photos.json`](content/photos.json) is the only place a pair is declared. Each confirmed record has its own public id, exactly two different stock piece ids, and a `notes` string that may be empty. The Stock page then renders those two pieces as one set: two photos, both piece IDs, and the pair note. It does not show a price.
+
+```json
+"bookmatches": []
+```
+
+Shape, when Bogdan confirms a real pair (do not paste this with invented ids):
+
+```json
+{
+  "id": "C0-BM-…",
+  "pieceIds": ["C0-LEFT", "C0-RIGHT"],
+  "notes": "",
+  "confirmed": true
+}
+```
+
+`pieceIds` must already be in stock (`slab`, `log`, or `veneer`). An unconfirmed record stays out of the grid. A confirmed record that does not match two in-stock pieces fails the content check instead of inventing a slab.
+
+English is the only locale shipped. A Romanian locale can be added later as `content/ro/` — do not invent Romanian marketing copy until it is provided. `species_ro` on photo cards is a per-piece label, not a full locale. Short Romanian labels already on the site (`Lungime`, `Lățime`, `Grosime`, `Cod piesă`, `Notă`, `estimare`, `cretă`) stay in that voice.
 
 ## Pages
 

@@ -2,13 +2,18 @@
 
 import Link from "next/link";
 import { useMemo, useState } from "react";
+import { BookmatchCard } from "@/components/BookmatchCard";
 import { PhotoCard } from "@/components/PhotoCard";
-import { getCopy, type PhotoItem } from "@/lib/content";
+import {
+  getCopy,
+  stockListingId,
+  type StockListing,
+} from "@/lib/content";
 import {
   DIM_FILTER_BOUNDS,
   clampRange,
   defaultDimFilter,
-  partitionStockByFilter,
+  partitionListings,
   type DimAxis,
   type DimFilter,
   type DimRange,
@@ -25,16 +30,16 @@ const AXES: {
 ];
 
 type StockFinderProps = {
-  items: PhotoItem[];
+  listings: StockListing[];
 };
 
-export function StockFinder({ items }: StockFinderProps) {
+export function StockFinder({ listings }: StockFinderProps) {
   const copy = getCopy();
   const [filter, setFilter] = useState<DimFilter>(defaultDimFilter);
 
   const { matches, tbd } = useMemo(
-    () => partitionStockByFilter(items, filter),
-    [items, filter],
+    () => partitionListings(listings, filter),
+    [listings, filter],
   );
 
   function updateAxis(axis: DimAxis, next: DimRange) {
@@ -96,9 +101,12 @@ export function StockFinder({ items }: StockFinderProps) {
             {copy.stock.matchesTitle} · {matches.length}
           </h3>
           <ul className="mt-6 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-            {matches.map((item) => (
-              <li key={item.id}>
-                <PhotoCard item={item} variant="stock" />
+            {matches.map((listing) => (
+              <li
+                key={stockListingId(listing)}
+                className={listing.kind === "bookmatch" ? "md:col-span-2" : undefined}
+              >
+                <ListingCard listing={listing} />
               </li>
             ))}
           </ul>
@@ -114,9 +122,12 @@ export function StockFinder({ items }: StockFinderProps) {
             {copy.stock.tbdNote}
           </p>
           <ul className="mt-6 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-            {tbd.map((item) => (
-              <li key={item.id}>
-                <PhotoCard item={item} variant="stock" />
+            {tbd.map((listing) => (
+              <li
+                key={stockListingId(listing)}
+                className={listing.kind === "bookmatch" ? "md:col-span-2" : undefined}
+              >
+                <ListingCard listing={listing} />
               </li>
             ))}
           </ul>
@@ -124,6 +135,19 @@ export function StockFinder({ items }: StockFinderProps) {
       ) : null}
     </section>
   );
+}
+
+function ListingCard({ listing }: { listing: StockListing }) {
+  switch (listing.kind) {
+    case "single":
+      return <PhotoCard item={listing.item} variant="stock" />;
+    case "bookmatch":
+      return <BookmatchCard listing={listing} />;
+    default: {
+      const exhaustive: never = listing;
+      return exhaustive;
+    }
+  }
 }
 
 function DimRangeControl({

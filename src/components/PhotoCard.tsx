@@ -3,6 +3,8 @@ import { PhotoMedia } from "@/components/PhotoMedia";
 import {
   getCopy,
   isEmptyField,
+  type Copy,
+  type DimBasis,
   type PhotoItem,
 } from "@/lib/content";
 
@@ -40,6 +42,10 @@ export function PhotoCard({ item, variant }: PhotoCardProps) {
       <div className="flex flex-1 flex-col gap-5 p-5">
         <div>
           <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-ink-muted">
+            {copy.stock.pieceId} · {copy.stock.pieceIdRo}
+          </p>
+          <p className="mt-1 font-mono text-lg text-ink">{item.id}</p>
+          <p className="mt-3 font-mono text-[11px] uppercase tracking-[0.16em] text-ink-muted">
             {LANE_LABEL[item.lane]} · {item.type}
           </p>
           <h3 className="mt-2 font-display text-3xl leading-snug text-ink">
@@ -61,9 +67,21 @@ export function PhotoCard({ item, variant }: PhotoCardProps) {
         </dl>
 
         <dl className="grid grid-cols-3 gap-3 border-t border-rule pt-4">
-          <ReadableField label="length" value={item.dims.length} />
-          <ReadableField label="width" value={item.dims.width} />
-          <ReadableField label="thickness" value={item.dims.thickness} />
+          <DimField
+            label={`${copy.stock.length} · ${copy.stock.lengthRo}`}
+            value={item.dims.length}
+            basis={item.dims.length_basis}
+          />
+          <DimField
+            label={`${copy.stock.width} · ${copy.stock.widthRo}`}
+            value={item.dims.width}
+            basis={item.dims.width_basis}
+          />
+          <DimField
+            label={`${copy.stock.thickness} · ${copy.stock.thicknessRo}`}
+            value={item.dims.thickness}
+            basis={item.dims.thickness_basis}
+          />
         </dl>
 
         <dl className="grid grid-cols-2 gap-x-4 gap-y-3 font-mono text-sm sm:grid-cols-4">
@@ -73,18 +91,7 @@ export function PhotoCard({ item, variant }: PhotoCardProps) {
           <ReadableField label="defects" value={item.defects} size="sm" />
         </dl>
 
-        <div className="border-t border-rule pt-4">
-          <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-ink-muted">
-            notes
-          </p>
-          <p className="mt-2 text-base leading-relaxed text-ink">
-            {isEmptyField(item.notes) ? (
-              <span className="text-ink-muted">—</span>
-            ) : (
-              item.notes
-            )}
-          </p>
-        </div>
+        <NoteLine notes={item.notes} />
 
         {isPortfolio ? null : (
           <Link
@@ -96,6 +103,83 @@ export function PhotoCard({ item, variant }: PhotoCardProps) {
         )}
       </div>
     </article>
+  );
+}
+
+export function NoteLine({
+  notes,
+  label,
+}: {
+  notes: string;
+  label?: string;
+}) {
+  const copy = getCopy();
+  const empty = isEmptyField(notes);
+  const heading = label ?? `${copy.stock.note} · ${copy.stock.noteRo}`;
+
+  return (
+    <div className="border-t border-rule pt-4">
+      <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-ink-muted">
+        {heading}
+      </p>
+      <p className="mt-2 text-base leading-relaxed text-ink">
+        {empty ? <span className="text-ink-muted">—</span> : notes}
+      </p>
+    </div>
+  );
+}
+
+function basisMark(basis: DimBasis, copy: Copy): { label: string; className: string } | null {
+  switch (basis) {
+    case "":
+    case "measured":
+      return null;
+    case "demo":
+      return {
+        label: `${copy.stock.demo} · ${copy.stock.demoRo}`,
+        className: "text-copper",
+      };
+    case "chalk":
+      return {
+        label: `${copy.stock.chalk} · ${copy.stock.chalkRo}`,
+        className: "text-ink-muted",
+      };
+    default: {
+      const exhaustive: never = basis;
+      return exhaustive;
+    }
+  }
+}
+
+export function DimField({
+  label,
+  value,
+  basis,
+}: {
+  label: string;
+  value: string;
+  basis: DimBasis;
+}) {
+  const copy = getCopy();
+  const empty = isEmptyField(value);
+  const mark = basisMark(basis, copy);
+
+  return (
+    <div>
+      <dt className="font-mono text-[11px] uppercase tracking-[0.14em] text-ink-muted">
+        {label}
+      </dt>
+      <dd className={`mt-1 text-lg ${empty ? "text-ink-muted" : "text-ink"}`}>
+        {empty ? "—" : value}
+        {mark ? (
+          <span
+            className={`mt-1 block font-mono text-[11px] uppercase tracking-[0.14em] ${mark.className}`}
+          >
+            {mark.label}
+          </span>
+        ) : null}
+      </dd>
+    </div>
   );
 }
 

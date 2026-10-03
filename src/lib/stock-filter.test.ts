@@ -1,10 +1,12 @@
 import { describe, expect, it } from "vitest";
-import { getStock } from "./content";
+import { getStock, resolveStockListings, stockListingId } from "./content";
 import {
   defaultDimFilter,
   hasCompleteDims,
   itemMatchesDimFilter,
+  listingMatchesDimFilter,
   parseDimCm,
+  partitionListings,
   partitionStockByFilter,
 } from "./stock-filter";
 
@@ -21,12 +23,8 @@ describe("stock dimension filter", () => {
     const filter = defaultDimFilter();
     const { matches, tbd } = partitionStockByFilter(stock, filter);
 
-    expect(matches.map((item) => item.id)).toEqual([
-      "C0-A03",
-      "C0-A04",
-      "C0-A09",
-    ]);
-    expect(tbd).toEqual([]);
+    expect(matches.map((item) => item.id)).toEqual(["C0-A03", "C0-A04"]);
+    expect(tbd.map((item) => item.id)).toEqual(["C0-A09"]);
     expect(itemMatchesDimFilter(stock[0], filter)).toBe(true);
     expect(
       itemMatchesDimFilter(
@@ -47,7 +45,14 @@ describe("stock dimension filter", () => {
     const incomplete = {
       ...complete,
       id: "C0-TBD",
-      dims: { length: "400 cm", width: "", thickness: "8 cm" },
+      dims: {
+        length: "400 cm",
+        width: "",
+        thickness: "8 cm",
+        length_basis: "demo" as const,
+        width_basis: "" as const,
+        thickness_basis: "demo" as const,
+      },
     };
 
     expect(hasCompleteDims(incomplete)).toBe(false);
@@ -59,5 +64,50 @@ describe("stock dimension filter", () => {
 
     expect(matches).toEqual([]);
     expect(tbd.map((item) => item.id)).toEqual(["C0-TBD"]);
+  });
+
+  it("treats a confirmed bookmatch as one set in the size finder", () => {
+    const stock = getStock().items;
+    const filter = defaultDimFilter();
+    const bothInRange = resolveStockListings(stock, [
+      {
+        id: "C0-BM-IN",
+        pieceIds: ["C0-A03", "C0-A04"],
+        notes: "",
+        confirmed: true,
+      },
+    ]);
+    const inRange = partitionListings(bothInRange, filter);
+    expect(inRange.matches.map(stockListingId)).toEqual(["C0-BM-IN"]);
+    expect(inRange.tbd.map(stockListingId)).toEqual(["C0-A09"]);
+
+    const mixed = resolveStockListings(stock, [
+      {
+        id: "C0-BM-MIXED",
+        pieceIds: ["C0-A03", "C0-A09"],
+        notes: "",
+        confirmed: true,
+      },
+    ]);
+    const mixedPartition = partitionListings(mixed, filter);
+    expect(mixedPartition.tbd.map(stockListingId)).toContain("C0-BM-MIXED");
+    expect(listingMatchesDimFilter(mixedPartition.tbd[0]!, filter)).toBe(false);
+
+    const wideAndNarrow = resolveStockListings(stock, [
+      {
+        id: "C0-BM-OUT",
+        pieceIds: ["C0-A03", "C0-A02"],
+        notes: "",
+        confirmed: true,
+      },
+    ]);
+    const out = partitionListings(wideAndNarrow, filter);
+    expect(out.matches.map(stockListingId)).toEqual(["C0-A04"]);
+    expect(out.tbd.map(stockListingId)).toEqual(["C0-A09"]);
+    expect(
+      [...out.matches, ...out.tbd].some(
+        (listing) => listing.kind === "bookmatch" && listing.id === "C0-BM-OUT",
+      ),
+    ).toBe(false);
   });
 });
