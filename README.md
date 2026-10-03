@@ -92,6 +92,7 @@ English is the only locale shipped. A Romanian locale can be added later as `con
 
 - `/` Home
 - `/stock` Catalog (sample / placeholder stock)
+- `/busteni` Provenance logs (Bușteni). Not a shop. Painted end numbers only. No stock links yet.
 - `/portfolio` Finished tables, labeled portfolio
 - `/about` Family workshop
 - `/contact` Email / WhatsApp placeholders + location

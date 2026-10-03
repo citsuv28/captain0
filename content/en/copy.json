@@ -9,6 +9,7 @@
   "nav": [
     { "href": "/", "label": "Home" },
     { "href": "/stock", "label": "Stock" },
+    { "href": "/busteni", "label": "Bușteni" },
     { "href": "/portfolio", "label": "Portfolio" },
     { "href": "/about", "label": "About" },
     { "href": "/contact", "label": "Contact" }
@@ -81,6 +82,18 @@
       "We quote freight from Romania. Shipping is always separate.",
       "Pay, then we crate/pallet the exact piece with origin docs."
     ]
+  },
+  "busteni": {
+    "title": "Bușteni",
+    "kicker": "Proveniență",
+    "intent": "The stock slabs were cut from logs like these.",
+    "intentRo": "Plăcile din stoc au fost tăiate din bușteni ca aceștia.",
+    "numbers": "Numbers",
+    "numbersRo": "Numere",
+    "species": "Species",
+    "speciesRo": "Specie",
+    "contextTitle": "Fără număr pe capăt",
+    "contextNote": "End number not visible."
   },
   "portfolio": {
     "title": "Portfolio",
