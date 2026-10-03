@@ -1,5 +1,5 @@
 {
-  "_readme": "Admin file: edit one object to change a photo card. Empty string = not filled yet (do not invent numbers). type must be slab|log|veneer|table|epoxy. lane must be A_placi|B_furnir|C_special. sort is display order (Home featured is C0-A03). slab/log/veneer render on /stock; table/epoxy on /portfolio. Stock L/W/T on A02–A06/B04 are demo/estimate until Saturday. A09 length/width are from chalk.",
+  "_readme": "Admin file: edit one object to change a photo card. Empty string = not filled yet (do not invent numbers). type must be slab|log|veneer|table|epoxy. lane must be A_placi|B_furnir|C_special. sort is display order (Home featured is C0-A03). slab/log/veneer render on /stock; table/epoxy on /portfolio. Demo/estimate dims stay labeled demo until measured L×W×T arrives. A09 length/width are chalk (350 × 125 cm); thickness stays empty. notes is the public note and may be empty. bookmatches lists confirmed pairs only (exactly two in-stock piece ids). No confirmed pair yet — do not invent one, a set price, or put A01 back. No prices.",
   "items": [
     {
       "id": "C0-A03",
@@ -13,13 +13,16 @@
       "dims": {
         "length": "430 cm",
         "width": "175 cm",
-        "thickness": "8 cm"
+        "thickness": "8 cm",
+        "length_basis": "demo",
+        "width_basis": "demo",
+        "thickness_basis": "demo"
       },
       "moisture": "",
       "weight": "",
       "year": "",
       "defects": "",
-      "notes": "Home featured. Huge live-edge mappa slab held for scale. Demo/estimate dims until Saturday. Not a measured ticket.",
+      "notes": "Home featured. Huge live-edge mappa slab held for scale. Demo/estimate dims. Not a measured ticket.",
       "photo": {
         "src": "/photos/stock/A03_placa-mare-scara.jpg",
         "alt": "Two workers holding a huge mappa live-edge slab"
@@ -37,13 +40,16 @@
       "dims": {
         "length": "390 cm",
         "width": "155 cm",
-        "thickness": "7 cm"
+        "thickness": "7 cm",
+        "length_basis": "demo",
+        "width_basis": "demo",
+        "thickness_basis": "demo"
       },
       "moisture": "",
       "weight": "",
       "year": "",
       "defects": "",
-      "notes": "Wide outdoor live-edge mappa with yard context. Demo/estimate dims until Saturday. Not a measured ticket.",
+      "notes": "Wide outdoor live-edge mappa with yard context. Demo/estimate dims. Not a measured ticket.",
       "photo": {
         "src": "/photos/stock/A04_live-edge-curte.jpg",
         "alt": "Wide outdoor live-edge mappa slab held in the yard"
@@ -61,13 +67,16 @@
       "dims": {
         "length": "260 cm",
         "width": "95 cm",
-        "thickness": "6 cm"
+        "thickness": "6 cm",
+        "length_basis": "demo",
+        "width_basis": "demo",
+        "thickness_basis": "demo"
       },
       "moisture": "",
       "weight": "",
       "year": "",
       "defects": "",
-      "notes": "Top-down raw mappa with a USB stick for scale. Demo/estimate dims until Saturday. Not a measured ticket.",
+      "notes": "Top-down raw mappa with a USB stick for scale. Demo/estimate dims. Not a measured ticket.",
       "photo": {
         "src": "/photos/stock/A02_topdown-mappa-scara.jpg",
         "alt": "Top-down raw mappa slab with a USB stick for scale"
@@ -85,13 +94,16 @@
       "dims": {
         "length": "350 cm",
         "width": "125 cm",
-        "thickness": "6 cm"
+        "thickness": "",
+        "length_basis": "chalk",
+        "width_basis": "chalk",
+        "thickness_basis": ""
       },
       "moisture": "",
       "weight": "",
       "year": "",
       "defects": "",
-      "notes": "Length and width from chalk on the slab (350 × 125 cm). Thickness is a demo estimate until Saturday. Chalk also shows 45; that is not treated as a confirmed thickness.",
+      "notes": "Length and width from chalk on the slab (350 × 125 cm). Thickness is unknown. Chalk also shows 45; that is not a confirmed thickness.",
       "photo": {
         "src": "/photos/stock/A09_350x125.jpg",
         "alt": "Figured poplar live-edge slab A9 standing in the yard, chalk marks 350 × 125"
@@ -109,13 +121,16 @@
       "dims": {
         "length": "95 cm",
         "width": "90 cm",
-        "thickness": "14 cm"
+        "thickness": "14 cm",
+        "length_basis": "demo",
+        "width_basis": "demo",
+        "thickness_basis": "demo"
       },
       "moisture": "",
       "weight": "",
       "year": "",
       "defects": "",
-      "notes": "Cross-cut cookie with bark and burl voids. Species not labeled. Demo/estimate dims until Saturday. Not a measured ticket.",
+      "notes": "Cross-cut cookie with bark and burl voids. Species not labeled. Demo/estimate dims. Not a measured ticket.",
       "photo": {
         "src": "/photos/stock/A06_cookie-burl-atelier.jpg",
         "alt": "Cross-cut burl cookie with bark standing on the shop floor"
@@ -133,13 +148,16 @@
       "dims": {
         "length": "310 cm",
         "width": "45 cm",
-        "thickness": "4 cm"
+        "thickness": "4 cm",
+        "length_basis": "demo",
+        "width_basis": "demo",
+        "thickness_basis": "demo"
       },
       "moisture": "",
       "weight": "",
       "year": "",
       "defects": "",
-      "notes": "Two stickered flitch stacks outdoors. Species not labeled. Demo/estimate dims until Saturday. Not a measured ticket.",
+      "notes": "Two stickered flitch stacks outdoors. Species not labeled. Demo/estimate dims. Not a measured ticket.",
       "photo": {
         "src": "/photos/stock/B04_flitch-stive-placi.jpg",
         "alt": "Two outdoor stacks of stickered flitch boards"
@@ -157,7 +175,10 @@
       "dims": {
         "length": "",
         "width": "",
-        "thickness": ""
+        "thickness": "",
+        "length_basis": "",
+        "width_basis": "",
+        "thickness_basis": ""
       },
       "moisture": "",
       "weight": "",
@@ -181,7 +202,10 @@
       "dims": {
         "length": "",
         "width": "",
-        "thickness": ""
+        "thickness": "",
+        "length_basis": "",
+        "width_basis": "",
+        "thickness_basis": ""
       },
       "moisture": "",
       "weight": "",
@@ -205,7 +229,10 @@
       "dims": {
         "length": "",
         "width": "",
-        "thickness": ""
+        "thickness": "",
+        "length_basis": "",
+        "width_basis": "",
+        "thickness_basis": ""
       },
       "moisture": "",
       "weight": "",
@@ -229,7 +256,10 @@
       "dims": {
         "length": "",
         "width": "",
-        "thickness": ""
+        "thickness": "",
+        "length_basis": "",
+        "width_basis": "",
+        "thickness_basis": ""
       },
       "moisture": "",
       "weight": "",
@@ -253,7 +283,10 @@
       "dims": {
         "length": "",
         "width": "",
-        "thickness": ""
+        "thickness": "",
+        "length_basis": "",
+        "width_basis": "",
+        "thickness_basis": ""
       },
       "moisture": "",
       "weight": "",
@@ -277,7 +310,10 @@
       "dims": {
         "length": "",
         "width": "",
-        "thickness": ""
+        "thickness": "",
+        "length_basis": "",
+        "width_basis": "",
+        "thickness_basis": ""
       },
       "moisture": "",
       "weight": "",
@@ -289,5 +325,6 @@
         "alt": "Finished round cookie table with a ceramic vase on top"
       }
     }
-  ]
+  ],
+  "bookmatches": []
 }

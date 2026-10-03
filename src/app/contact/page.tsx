@@ -37,7 +37,7 @@ export default function ContactPage() {
         </ul>
         <p className="mt-6 text-sm text-ink-muted">
           Sample catalog cards:{" "}
-          <Link href="/stock" className="font-semibold text-forest underline">
+          <Link href="/stock" className="text-ink underline">
             Stock
           </Link>
           . Freight is quoted separately from Romania.

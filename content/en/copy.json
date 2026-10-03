@@ -9,6 +9,7 @@
   "nav": [
     { "href": "/", "label": "Home" },
     { "href": "/stock", "label": "Stock" },
+    { "href": "/logs", "label": "Logs" },
     { "href": "/portfolio", "label": "Portfolio" },
     { "href": "/about", "label": "About" },
     { "href": "/contact", "label": "Contact" }
@@ -58,13 +59,43 @@
     "empty": "No stock in range — special request / sourcing",
     "emptyCta": "Contact for a special request",
     "tbdTitle": "Dims TBD",
-    "tbdNote": "Measurements land Saturday. Pieces without a complete L × W × T sit here.",
+    "tbdNote": "Pieces without a complete L × W × T sit here. Demo sizes stay marked demo until measured length, width, and thickness arrive.",
+    "pieceId": "Piece ID",
+    "pieceIdRo": "Cod piesă",
+    "species": "Species",
+    "speciesRo": "Specie",
+    "note": "Note",
+    "noteRo": "Notă",
+    "demo": "demo",
+    "demoRo": "estimare",
+    "chalk": "chalk",
+    "chalkRo": "cretă",
+    "bookmatchKicker": "Bookmatch pair",
+    "bookmatchKickerRo": "Pereche bookmatch",
+    "bookmatchHint": "Two pieces, one set.",
+    "bookmatchHintRo": "Două piese, un set.",
+    "pairId": "Pair ID",
+    "pairIdRo": "Cod pereche",
+    "pairNote": "Pair note",
+    "pairNoteRo": "Notă pereche",
     "steps": [
       "Browse the stock list and note the slab ID.",
       "Message us with the slab ID and your delivery postcode.",
       "We quote freight from Romania. Shipping is always separate.",
       "Pay, then we crate/pallet the exact piece with origin docs."
     ]
+  },
+  "busteni": {
+    "title": "Logs",
+    "kicker": "Proveniență",
+    "intent": "The log stays whole until it is cut, so the grain can match.",
+    "intentRo": "Bușteanul rămâne întreg până se taie, ca fibra să se potrivească.",
+    "numbers": "Numbers",
+    "numbersRo": "Numere",
+    "species": "Species",
+    "speciesRo": "Specie",
+    "contextTitle": "Fără număr pe capăt",
+    "contextNote": "End number not visible."
   },
   "portfolio": {
     "title": "Portfolio",
@@ -85,7 +116,9 @@
   },
   "cta": {
     "requestStockList": "Request stock list",
-    "askFreightQuote": "Ask for freight quote"
+    "askFreightQuote": "Ask for freight quote",
+    "askForPiece": "Ask for this piece",
+    "askForPieceRo": "Cere piesa"
   },
   "footer": {
     "mark": "Captain0",

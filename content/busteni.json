@@ -1,0 +1,69 @@
+{
+  "_readme": "Provenance only. numbers are the digits painted on the log ends in that photo. One card may list several numbers when they share a photo. stock_link stays empty until a real match is confirmed — do not point a log at a stock slab. No prices, dimensions, or moisture. Species is plop negru bubos / black poplar. The standing tree is the hero, not a card. The held mappa slab (09) does not belong here.",
+  "hero": {
+    "src": "/photos/busteni/08-standing-tree-burl-source.jpg",
+    "alt": "Standing black poplar with a large burl, source of these logs"
+  },
+  "logs": [
+    {
+      "numbers": ["3", "1", "4"],
+      "species_ro": "plop negru bubos",
+      "species_en": "black poplar",
+      "stock_link": "",
+      "notes": "În curte, capete marcate 3, 1 și 4. Vederea de aproape arată 1 și 4.",
+      "photos": [
+        {
+          "src": "/photos/busteni/01-yard-marked-3-1-4.jpg",
+          "alt": "Three black poplar logs in the yard, ends marked 3, 1 and 4"
+        },
+        {
+          "src": "/photos/busteni/05-ends-marked-1-4.jpg",
+          "alt": "Close view of black poplar log ends marked 1 and 4"
+        }
+      ]
+    },
+    {
+      "numbers": ["25"],
+      "species_ro": "plop negru bubos",
+      "species_en": "black poplar",
+      "stock_link": "",
+      "notes": "Capăt marcat 25.",
+      "photos": [
+        {
+          "src": "/photos/busteni/03-yard-marked-25.jpg",
+          "alt": "Black poplar log in the yard, end marked 25"
+        }
+      ]
+    },
+    {
+      "numbers": ["31", "1", "23", "10", "28"],
+      "species_ro": "plop negru bubos",
+      "species_en": "black poplar",
+      "stock_link": "",
+      "notes": "Rând în curte: 31, 1, 23, 10, 28.",
+      "photos": [
+        {
+          "src": "/photos/busteni/06-yard-row-31-1-23-10-28.jpg",
+          "alt": "Row of black poplar logs in the yard, ends marked 31, 1, 23, 10 and 28"
+        }
+      ]
+    }
+  ],
+  "context": [
+    {
+      "src": "/photos/busteni/02-trailer-load.jpg",
+      "alt": "Black poplar logs loaded on a trailer, end numbers not visible",
+      "notes": "Pe trailer. Numărul de pe capăt nu se vede."
+    },
+    {
+      "src": "/photos/busteni/04-forklift-lift.jpg",
+      "alt": "Forklift lifting a black poplar log, end number not visible",
+      "notes": "Ridicare. Numărul de pe capăt nu se vede."
+    },
+    {
+      "src": "/photos/busteni/07-trailer-side-profile.jpg",
+      "alt": "Side view of black poplar logs on a trailer, end numbers not visible",
+      "notes": "Profil pe trailer. Numărul de pe capăt nu se vede."
+    }
+  ]
+}

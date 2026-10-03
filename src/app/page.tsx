@@ -1,103 +1,184 @@
+import Image from "next/image";
 import Link from "next/link";
-import { CtaRow } from "@/components/CtaRow";
-import { PhotoMedia } from "@/components/PhotoMedia";
-import {
-  FEATURED_ID,
-  getCopy,
-  getFeaturedHero,
-  getHomeHeroes,
-  homeHref,
-} from "@/lib/content";
+import { CollectionGrid } from "@/components/CollectionGrid";
+import { ProjectBrief } from "@/components/ProjectBrief";
+import { StorySection } from "@/components/StorySection";
+import { getCollectionPieces } from "@/lib/collection";
+import { getBusteni } from "@/lib/busteni";
+import { getCopy, getFeaturedHero, getPortfolio } from "@/lib/content";
 
 export default function HomePage() {
   const copy = getCopy();
   const hero = getFeaturedHero();
-  const heroes = getHomeHeroes();
+  const pieces = getCollectionPieces();
+  const furniture = getPortfolio().items.find((item) => item.id === "C0-P03");
+  const yardLog = getBusteni().logs[0]?.photos[0];
+  const slabCover = pieces.find((piece) => piece.id === "C0-A04");
 
   return (
     <main id="main">
-      <section className="mx-auto grid max-w-6xl items-center gap-10 px-4 py-12 sm:px-6 lg:grid-cols-2 lg:gap-16 lg:py-20">
-        <div>
-          <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-ink-muted">
-            {copy.home.kicker}
-          </p>
-          <p className="mt-3 font-display text-2xl text-copper sm:text-3xl">
-            {copy.home.tagline}
-          </p>
-          <h1 className="mt-4 font-display text-[2.35rem] leading-[1.12] text-ink sm:text-5xl lg:text-[3.4rem]">
-            {copy.home.hero}
+      <section className="hero">
+        <div className="herocopy">
+          <p className="eyebrow">{copy.home.kicker}</p>
+          <h1>
+            Raw European wood
+            <br />
+            slabs from <em>Neamț</em>, Romania.
           </h1>
-          <p className="mt-6 max-w-xl text-lg leading-relaxed text-ink-muted">
-            {copy.home.subhead}
-          </p>
-          <CtaRow className="mt-8" />
+          <p className="intro">{copy.home.subhead}</p>
+          <Link className="button" href="/stock">
+            {copy.cta.requestStockList}
+          </Link>
+          <div className="herofoot">
+            <span>{copy.footer.place.toUpperCase()}</span>
+            <span>{hero.id}</span>
+          </div>
         </div>
-        <PhotoMedia
-          src={hero.photo.src}
-          alt={hero.photo.alt}
-          caption={`${hero.id} — ${hero.notes}`}
-          className="min-h-[280px] lg:min-h-[420px]"
-          priority
-        />
+        <figure className="heroimage">
+          <Image
+            src={hero.photo.src}
+            alt={hero.photo.alt}
+            fill
+            priority
+            sizes="(min-width: 950px) 54vw, 100vw"
+          />
+          <figcaption>
+            <span>{hero.title}</span>
+            <span>{hero.id}</span>
+          </figcaption>
+        </figure>
       </section>
 
-      <section
-        aria-labelledby="gallery"
-        className="border-t border-rule"
-      >
-        <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6">
-          <h2
-            id="gallery"
-            className="font-mono text-[11px] uppercase tracking-[0.18em] text-ink-muted"
-          >
-            Curated set
-          </h2>
-          <p className="mt-3 max-w-2xl text-ink-muted">
-            Six raw stock photos and six finished-table examples. Tables are
-            not the main SKU and are not for sale as stock.
+      <div className="manifesto">
+        <span className="eyebrow">{copy.brand.tagline}</span>
+        <p>
+          Some wood is a material.
+          <br />
+          <em>Some wood is the starting point.</em>
+        </p>
+        <span className="small">{copy.footer.productNote}</span>
+      </div>
+
+      <section id="collections" className="collections">
+        <div className="sectionhead">
+          <div>
+            <p className="eyebrow">THREE WAYS TO BEGIN</p>
+            <h2>Follow the material.</h2>
+          </div>
+          <p>
+            Furniture, rare slabs,
+            <br />
+            and logs.
           </p>
-          <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {heroes.map((item) => (
-              <li key={item.id}>
-                <Link href={homeHref(item)} className="block">
-                  <PhotoMedia
-                    src={item.photo.src}
-                    alt={item.photo.alt}
-                    caption={`${item.hero_lane === "D" ? "Portfolio" : "Stock"} · ${item.id}`}
-                    className="aspect-[4/5]"
-                    priority={item.id === FEATURED_ID}
-                  />
-                </Link>
-              </li>
-            ))}
-          </ul>
+        </div>
+        <div className="categorygrid">
+          <Link className="category" href="/portfolio">
+            {furniture ? (
+              <Image
+                src={furniture.photo.src}
+                alt={furniture.photo.alt}
+                fill
+                sizes="(min-width: 950px) 33vw, 100vw"
+              />
+            ) : null}
+            <span className="number">01</span>
+            <div>
+              <h3>Furniture</h3>
+              <p>Portfolio only. Not the main SKU.</p>
+            </div>
+          </Link>
+          <Link className="category" href="/stock">
+            {slabCover ? (
+              <Image
+                src={slabCover.src}
+                alt={slabCover.alt}
+                fill
+                sizes="(min-width: 950px) 33vw, 100vw"
+              />
+            ) : null}
+            <span className="number">02</span>
+            <div>
+              <h3>Rare slabs</h3>
+              <p>Every piece in stock is a one-off.</p>
+            </div>
+          </Link>
+          <Link className="category" href="/logs">
+            {yardLog ? (
+              <Image
+                src={yardLog.src}
+                alt={yardLog.alt}
+                fill
+                sizes="(min-width: 950px) 33vw, 100vw"
+              />
+            ) : null}
+            <span className="number">03</span>
+            <div>
+              <h3>Logs</h3>
+              <p>{copy.busteni.intent}</p>
+            </div>
+          </Link>
         </div>
       </section>
 
-      <section
-        aria-labelledby="value-props"
-        className="border-t border-rule bg-paper-2/50"
-      >
-        <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6">
-          <h2
-            id="value-props"
-            className="font-mono text-[11px] uppercase tracking-[0.18em] text-ink-muted"
-          >
-            For makers, luthiers, and workshops
+      <section className="selection" id="selection">
+        <div className="sectionhead">
+          <div>
+            <p className="eyebrow">A CLOSER LOOK</p>
+            <h2>The pieces we have.</h2>
+          </div>
+          <p>
+            Open a piece.
+            <br />
+            Ask for that one.
+          </p>
+        </div>
+        <CollectionGrid pieces={pieces} />
+        <p className="collectionnote">
+          Species and dimensions are shown only when they are already known.
+          Demo sizes stay marked demo. Nothing here has a public price.
+        </p>
+      </section>
+
+      <StorySection src={hero.photo.src} alt={hero.photo.alt} />
+
+      <section className="journey" id="journey">
+        <div>
+          <p className="eyebrow">RARE WOOD SOURCING</p>
+          <h2>
+            From log
+            <br />
+            to possibility.
           </h2>
-          <ol className="mt-8 grid gap-8 md:grid-cols-3">
-            {copy.home.valueProps.map((prop, index) => (
-              <li key={prop.title} className="border-t border-rule pt-5">
-                <p className="font-mono text-xs text-copper">
-                  {String(index + 1).padStart(2, "0")}
-                </p>
-                <h3 className="mt-3 font-display text-2xl">{prop.title}</h3>
-                <p className="mt-3 leading-relaxed text-ink-muted">{prop.body}</p>
-              </li>
-            ))}
-          </ol>
+        </div>
+        <div className="steps">
+          <article className="step">
+            <span>01 / DISCOVER</span>
+            <h3>Read the material.</h3>
+            <p>
+              The outline, grain and scale guide the selection. Tell us what
+              your project needs.
+            </p>
+          </article>
+          <article className="step">
+            <span>02 / DOCUMENT</span>
+            <h3>Know the piece.</h3>
+            <p>
+              Species, origin, dimensions and condition belong to the individual
+              material record.
+            </p>
+          </article>
+          <article className="step">
+            <span>03 / CREATE</span>
+            <h3>Give it a purpose.</h3>
+            <p>
+              A slab for a maker. A log for further processing. A finished
+              object for a considered interior.
+            </p>
+          </article>
         </div>
       </section>
+
+      <ProjectBrief />
     </main>
   );
 }

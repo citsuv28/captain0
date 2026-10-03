@@ -1,18 +1,21 @@
 import type { Metadata } from "next";
-import { IBM_Plex_Mono, Source_Sans_3, Source_Serif_4 } from "next/font/google";
+import { DM_Sans, IBM_Plex_Mono, Italiana } from "next/font/google";
+import { ProjectProvider } from "@/components/ProjectProvider";
 import { Footer, Header } from "@/components/SiteChrome";
 import { getCopy } from "@/lib/content";
 import "./globals.css";
 
-const sourceSerif = Source_Serif_4({
-  subsets: ["latin", "latin-ext"],
-  variable: "--font-source-serif",
+const italiana = Italiana({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-italiana",
   display: "swap",
 });
 
-const sourceSans = Source_Sans_3({
+const dmSans = DM_Sans({
   subsets: ["latin", "latin-ext"],
-  variable: "--font-source-sans",
+  weight: ["400", "500", "600"],
+  variable: "--font-dm",
   display: "swap",
 });
 
@@ -38,18 +41,17 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${sourceSerif.variable} ${sourceSans.variable} ${ibmPlexMono.variable} h-full antialiased`}
+      className={`${italiana.variable} ${dmSans.variable} ${ibmPlexMono.variable} h-full antialiased`}
     >
-      <body className="flex min-h-full flex-col font-sans">
-        <a
-          href="#main"
-          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:bg-forest focus:px-3 focus:py-2 focus:text-paper"
-        >
-          Skip to content
-        </a>
-        <Header />
-        {children}
-        <Footer />
+      <body className="min-h-dvh bg-paper font-sans text-ink">
+        <ProjectProvider>
+          <a href="#main" className="skip">
+            Skip to content
+          </a>
+          <Header />
+          {children}
+          <Footer />
+        </ProjectProvider>
       </body>
     </html>
   );

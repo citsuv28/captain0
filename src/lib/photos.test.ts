@@ -5,6 +5,17 @@ import { getHomeHeroes, getPhotos, getPortfolio, getStock, getWorkshop } from ".
 
 const PHOTO_ROOT = resolve(process.cwd(), "public/photos");
 
+const BUSTENI = [
+  "busteni/01-yard-marked-3-1-4.jpg",
+  "busteni/02-trailer-load.jpg",
+  "busteni/03-yard-marked-25.jpg",
+  "busteni/04-forklift-lift.jpg",
+  "busteni/05-ends-marked-1-4.jpg",
+  "busteni/06-yard-row-31-1-23-10-28.jpg",
+  "busteni/07-trailer-side-profile.jpg",
+  "busteni/08-standing-tree-burl-source.jpg",
+] as const;
+
 const REQUIRED = [
   "stock/A03_placa-mare-scara.jpg",
   "stock/A04_live-edge-curte.jpg",
@@ -31,16 +42,19 @@ function listPhotoFiles(dir: string, prefix = ""): string[] {
 }
 
 describe("curated photo files", () => {
-  it("ships only the 12 curated files under public/photos", () => {
-    for (const name of REQUIRED) {
+  it("ships the 12 catalog files plus the eight Bușteni photos", () => {
+    for (const name of [...REQUIRED, ...BUSTENI]) {
       expect(existsSync(resolve(PHOTO_ROOT, name)), name).toBe(true);
     }
 
     const onDisk = listPhotoFiles(PHOTO_ROOT).sort();
-    expect(onDisk).toEqual([...REQUIRED].sort());
-    expect(onDisk.some((name) => /heroes|macara|utilaj|ansamblu|atelier-B2|crane/i.test(name))).toBe(
-      false,
-    );
+    expect(onDisk).toEqual([...REQUIRED, ...BUSTENI].sort());
+    expect(
+      onDisk.some((name) =>
+        /slab-mappa-burl-held|heroes|macara|utilaj|ansamblu|atelier-B2|crane/i.test(name),
+      ),
+    ).toBe(false);
+    expect(onDisk.some((name) => name.startsWith("busteni/09"))).toBe(false);
   });
 
   it("points every catalog item at a unique file that exists on disk", () => {

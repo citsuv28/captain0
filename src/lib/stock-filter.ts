@@ -1,4 +1,8 @@
-import { isEmptyField, type PhotoItem } from "./content";
+import {
+  isEmptyField,
+  type PhotoItem,
+  type StockListing,
+} from "./content";
 
 export type DimRange = {
   min: number;
@@ -81,6 +85,53 @@ export function itemMatchesDimFilter(item: PhotoItem, filter: DimFilter): boolea
     inRange(dims.width as number, filter.width) &&
     inRange(dims.thickness as number, filter.thickness)
   );
+}
+
+function listingPieces(listing: StockListing): PhotoItem[] {
+  switch (listing.kind) {
+    case "single":
+      return [listing.item];
+    case "bookmatch":
+      return [listing.pieces[0], listing.pieces[1]];
+    default: {
+      const exhaustive: never = listing;
+      return exhaustive;
+    }
+  }
+}
+
+export function listingHasCompleteDims(listing: StockListing): boolean {
+  return listingPieces(listing).every((item) => hasCompleteDims(item));
+}
+
+export function listingMatchesDimFilter(
+  listing: StockListing,
+  filter: DimFilter,
+): boolean {
+  if (!listingHasCompleteDims(listing)) {
+    return false;
+  }
+  return listingPieces(listing).every((item) => itemMatchesDimFilter(item, filter));
+}
+
+export function partitionListings(
+  listings: StockListing[],
+  filter: DimFilter,
+): { matches: StockListing[]; tbd: StockListing[] } {
+  const matches: StockListing[] = [];
+  const tbd: StockListing[] = [];
+
+  for (const listing of listings) {
+    if (!listingHasCompleteDims(listing)) {
+      tbd.push(listing);
+      continue;
+    }
+    if (listingMatchesDimFilter(listing, filter)) {
+      matches.push(listing);
+    }
+  }
+
+  return { matches, tbd };
 }
 
 export function partitionStockByFilter(

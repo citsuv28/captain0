@@ -1,83 +1,85 @@
+"use client";
+
 import Link from "next/link";
-import { getCopy } from "@/lib/content";
+import { useState } from "react";
+import { useProject } from "@/components/ProjectProvider";
+
+const NAV = [
+  { href: "/#collections", label: "Collections" },
+  { href: "/#story", label: "Our story" },
+  { href: "/#journey", label: "The journey" },
+];
 
 export function Header() {
-  const copy = getCopy();
+  const { brief } = useProject();
+  const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-20 border-b border-rule bg-paper/95 backdrop-blur">
-      <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3 sm:px-6">
-        <Link href="/" className="min-w-0">
-          <span className="block font-display text-xl tracking-tight text-ink">
-            Captain0
-          </span>
-          <span className="block truncate font-mono text-[10px] uppercase tracking-[0.18em] text-ink-muted">
-            {copy.brand.tagline}
-          </span>
-        </Link>
-
-        <nav
-          aria-label="Primary"
-          className="hidden items-center gap-6 text-sm md:flex"
-        >
-          {copy.nav.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="text-ink-muted hover:text-ink"
-            >
-              {item.label}
-            </Link>
-          ))}
-          <Link
-            href="/stock"
-            className="bg-forest px-3 py-2 text-xs font-semibold uppercase tracking-[0.12em] text-paper hover:bg-forest-2"
-          >
-            {copy.cta.requestStockList}
+    <header>
+      <Link className="brand" href="/">
+        Captain0
+        <span>RARE WOOD · ROMANIA</span>
+      </Link>
+      <nav className="mainnav" aria-label="Main navigation">
+        {NAV.map((item) => (
+          <Link key={item.href} href={item.href}>
+            {item.label}
           </Link>
-        </nav>
-
-        <details className="relative md:hidden">
-          <summary className="cursor-pointer list-none border border-rule px-3 py-2 text-sm">
-            Menu
-          </summary>
-          <div className="absolute right-0 mt-2 w-56 border border-rule bg-paper p-3 shadow-sm">
-            <nav aria-label="Mobile" className="flex flex-col gap-2 text-sm">
-              {copy.nav.map((item) => (
-                <Link key={item.href} href={item.href} className="py-1">
-                  {item.label}
-                </Link>
-              ))}
-              <Link href="/stock" className="bg-forest px-3 py-2 text-paper">
-                {copy.cta.requestStockList}
-              </Link>
-            </nav>
-          </div>
-        </details>
-      </div>
+        ))}
+      </nav>
+      <Link className="navcta" href="/#enquiry">
+        Your project <span>{brief.references.length}</span>
+      </Link>
+      <button
+        type="button"
+        className="menu-toggle"
+        aria-label="Open navigation"
+        aria-expanded={open}
+        aria-controls="mobile-nav"
+        onClick={() => setOpen((current) => !current)}
+      >
+        Menu
+      </button>
+      <nav
+        id="mobile-nav"
+        className="mobile-nav"
+        hidden={!open}
+        aria-label="Mobile navigation"
+      >
+        {NAV.map((item) => (
+          <Link key={item.href} href={item.href} onClick={() => setOpen(false)}>
+            {item.label}
+          </Link>
+        ))}
+        <Link href="/stock" onClick={() => setOpen(false)}>
+          Rare slabs
+        </Link>
+        <Link href="/logs" onClick={() => setOpen(false)}>
+          Logs
+        </Link>
+        <Link href="/portfolio" onClick={() => setOpen(false)}>
+          Furniture
+        </Link>
+        <Link href="/#enquiry" onClick={() => setOpen(false)}>
+          Your project
+        </Link>
+      </nav>
     </header>
   );
 }
 
 export function Footer() {
-  const copy = getCopy();
-
   return (
-    <footer className="mt-auto border-t border-forest bg-forest text-paper">
-      <div className="mx-auto flex max-w-6xl flex-col gap-4 px-4 py-10 sm:px-6 md:flex-row md:items-end md:justify-between">
-        <div>
-          <p className="font-display text-2xl">{copy.footer.mark}</p>
-          <p className="mt-1 font-mono text-xs uppercase tracking-[0.16em] text-paper/80">
-            {copy.footer.place}
-          </p>
-        </div>
-        <p className="max-w-md text-sm text-paper/85">{copy.footer.productNote}</p>
-      </div>
-      <div className="border-t border-paper/15">
-        <p className="mx-auto max-w-6xl px-4 py-3 font-mono text-[11px] uppercase tracking-[0.14em] text-paper/60 sm:px-6">
-          Preview site — not the live captain0.com domain
-        </p>
-      </div>
+    <footer>
+      <Link className="brand" href="/">
+        Captain0
+        <span>RARE WOOD · ROMANIA</span>
+      </Link>
+      <p>A family story, written in wood.</p>
+      <span>
+        Piatra Neamț · Romania
+        <br />© Captain0
+      </span>
     </footer>
   );
 }

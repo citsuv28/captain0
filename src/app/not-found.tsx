@@ -10,10 +10,7 @@ export default function NotFound() {
       <p className="mt-4 text-ink-muted">
         That route is not on this preview site.
       </p>
-      <Link
-        href="/"
-        className="mt-8 inline-block bg-forest px-5 py-3 text-sm font-semibold text-paper"
-      >
+      <Link href="/" className="mt-8 inline-block text-sm text-ink underline">
         Back to home
       </Link>
     </main>
