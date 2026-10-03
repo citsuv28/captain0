@@ -22,7 +22,7 @@ export default function ContactPage() {
         <SlabFromQuery />
       </Suspense>
 
-      <dl className="mt-12 max-w-xl divide-y divide-rule border border-rule">
+      <dl className="mt-12 max-w-xl divide-y divide-white/15 border border-white/15">
         <Row term="Email" value={copy.contact.email} />
         <Row term="WhatsApp" value={copy.contact.whatsapp} />
         <Row term="Location" value={copy.contact.location} />
@@ -30,14 +30,14 @@ export default function ContactPage() {
 
       <section className="mt-12 max-w-xl">
         <h2 className="font-display text-2xl">{copy.contact.includeTitle}</h2>
-        <ul className="mt-4 list-disc space-y-2 pl-5 text-ink-muted">
+        <ul className="mt-4 list-disc space-y-2 pl-5 text-casa-muted">
           {copy.contact.include.map((item) => (
             <li key={item}>{item}</li>
           ))}
         </ul>
-        <p className="mt-6 text-sm text-ink-muted">
+        <p className="mt-6 text-sm text-casa-muted">
           Sample catalog cards:{" "}
-          <Link href="/stock" className="font-semibold text-forest underline">
+          <Link href="/stock" className="text-casa-ink underline">
             Stock
           </Link>
           . Freight is quoted separately from Romania.
@@ -50,7 +50,7 @@ export default function ContactPage() {
 function Row({ term, value }: { term: string; value: string }) {
   return (
     <div className="grid gap-1 px-5 py-4 sm:grid-cols-[8rem_1fr] sm:items-baseline">
-      <dt className="font-mono text-[11px] uppercase tracking-[0.16em] text-ink-muted">
+      <dt className="font-mono text-[11px] uppercase tracking-[0.16em] text-casa-muted">
         {term}
       </dt>
       <dd className="text-lg">{value}</dd>

@@ -16,6 +16,9 @@
   --color-forest-2: #15241d;
   --color-copper: #7a4e32;
   --color-burl: #c48a4a;
+  --color-casa: #0c0c0b;
+  --color-casa-ink: #f3efe6;
+  --color-casa-muted: #9a948a;
 }
 
 html {
@@ -23,15 +26,15 @@ html {
 }
 
 body {
-  background: var(--color-paper);
-  color: var(--color-ink);
+  background: var(--color-casa);
+  color: var(--color-casa-ink);
   font-family: var(--font-sans);
   font-feature-settings: "ss01" on, "kern" on;
 }
 
 ::selection {
-  background: var(--color-forest);
-  color: var(--color-paper);
+  background: var(--color-casa-ink);
+  color: var(--color-casa);
 }
 
 a {
