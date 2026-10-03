@@ -143,21 +143,38 @@ export default function HomePage() {
 
       <section className="journey" id="journey">
         <div>
-          <p className="eyebrow">FOR MAKERS, LUTHIERS AND WORKSHOPS</p>
+          <p className="eyebrow">RARE WOOD SOURCING</p>
           <h2>
-            From the yard
+            From log
             <br />
-            in Neamț.
+            to possibility.
           </h2>
         </div>
         <div className="steps">
-          {copy.home.valueProps.map((step, index) => (
-            <article className="step" key={step.title}>
-              <span>0{index + 1}</span>
-              <h3>{step.title}</h3>
-              <p>{step.body}</p>
-            </article>
-          ))}
+          <article className="step">
+            <span>01 / DISCOVER</span>
+            <h3>Read the material.</h3>
+            <p>
+              The outline, grain and scale guide the selection. Tell us what
+              your project needs.
+            </p>
+          </article>
+          <article className="step">
+            <span>02 / DOCUMENT</span>
+            <h3>Know the piece.</h3>
+            <p>
+              Species, origin, dimensions and condition belong to the individual
+              material record.
+            </p>
+          </article>
+          <article className="step">
+            <span>03 / CREATE</span>
+            <h3>Give it a purpose.</h3>
+            <p>
+              A slab for a maker. A log for further processing. A finished
+              object for a considered interior.
+            </p>
+          </article>
         </div>
       </section>
 

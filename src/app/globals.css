@@ -537,37 +537,35 @@ footer a {
 
 .journey {
   display: grid;
-  grid-template-columns: 0.8fr 1.2fr;
+  grid-template-columns: 1fr 2fr;
   gap: 70px;
 }
 
 .steps {
   display: grid;
-  gap: 0;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
 }
 
 .step {
-  display: grid;
-  grid-template-columns: 70px 1fr;
-  gap: 20px;
-  padding: 28px 0;
   border-top: 1px solid var(--line);
+  padding-top: 20px;
 }
 
 .step span {
+  font-size: 12px;
   color: var(--gold);
-  letter-spacing: 1px;
 }
 
 .step h3 {
-  font-size: 28px;
-  margin: 0 0 8px;
+  font: 29px var(--serif);
+  margin: 28px 0 15px;
 }
 
 .step p {
   margin: 0;
-  color: #526058;
-  line-height: 1.6;
+  font-size: 14px;
+  color: #647069;
 }
 
 .enquiry {
@@ -821,6 +819,10 @@ dialog.dialog::backdrop {
   .productgrid,
   .contextblock ul {
     grid-template-columns: 1fr 1fr;
+  }
+
+  .steps {
+    grid-template-columns: 1fr;
   }
 
   .story {
