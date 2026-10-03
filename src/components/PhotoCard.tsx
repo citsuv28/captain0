@@ -1,4 +1,5 @@
 import Link from "next/link";
+import type { ReactNode } from "react";
 import { PhotoMedia } from "@/components/PhotoMedia";
 import {
   getCopy,
@@ -7,12 +8,6 @@ import {
   type DimBasis,
   type PhotoItem,
 } from "@/lib/content";
-
-const LANE_LABEL: Record<PhotoItem["lane"], string> = {
-  A_placi: "A · plăci",
-  B_furnir: "B · furnir",
-  C_special: "C · special",
-};
 
 type PhotoCardProps = {
   item: PhotoItem;
@@ -23,86 +18,132 @@ export function PhotoCard({ item, variant }: PhotoCardProps) {
   const copy = getCopy();
   const isPortfolio = variant === "portfolio";
 
+  if (isPortfolio) {
+    return (
+      <article className="flex flex-col border border-rule bg-paper">
+        <div className="border-b border-rule px-4 py-2 font-mono text-[11px] uppercase tracking-[0.16em] text-ink-muted">
+          Portfolio example — not the main SKU
+        </div>
+        <PhotoMedia
+          src={item.photo.src}
+          alt={item.photo.alt}
+          caption={item.id}
+          className="aspect-[4/5]"
+        />
+        <div className="flex flex-1 flex-col gap-5 p-5">
+          <div>
+            <p className="font-mono text-lg text-ink">{item.id}</p>
+            <h3 className="mt-2 font-display text-3xl leading-snug text-ink">
+              {item.title}
+            </h3>
+          </div>
+          <SpeciesLine
+            speciesRo={item.species_ro}
+            speciesEn={item.species_en}
+            label={copy.stock.species}
+            labelRo={copy.stock.speciesRo}
+          />
+          <Dims item={item} />
+          <NoteLine notes={item.notes} />
+        </div>
+      </article>
+    );
+  }
+
   return (
-    <article className="flex flex-col border border-rule bg-paper">
-      <div className="flex flex-wrap items-center justify-between gap-3 border-b border-rule px-4 py-2 font-mono text-[11px] uppercase tracking-[0.16em] text-ink-muted">
-        <span>
-          {isPortfolio
-            ? "Portfolio example — not the main SKU"
-            : "Candidate stock — fields incomplete"}
-        </span>
-        <span className="text-ink">{item.id}</span>
-      </div>
+    <PassportShell
+      kicker={`${copy.stock.pieceId} · ${copy.stock.pieceIdRo}`}
+      id={item.id}
+    >
       <PhotoMedia
         src={item.photo.src}
         alt={item.photo.alt}
-        caption={`${item.id} · ${item.type} · ${item.lane}`}
-        className="aspect-[4/5]"
+        caption={item.id}
+        className="aspect-[4/5] border-x-0 border-t-0"
       />
       <div className="flex flex-1 flex-col gap-5 p-5">
-        <div>
-          <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-ink-muted">
-            {copy.stock.pieceId} · {copy.stock.pieceIdRo}
-          </p>
-          <p className="mt-1 font-mono text-lg text-ink">{item.id}</p>
-          <p className="mt-3 font-mono text-[11px] uppercase tracking-[0.16em] text-ink-muted">
-            {LANE_LABEL[item.lane]} · {item.type}
-          </p>
-          <h3 className="mt-2 font-display text-3xl leading-snug text-ink">
-            {item.title}
-          </h3>
-        </div>
-
-        <dl className="grid gap-4">
-          <ReadableField
-            label="species_ro"
-            value={item.species_ro}
-            size="xl"
-          />
-          <ReadableField
-            label="species_en"
-            value={item.species_en}
-            size="xl"
-          />
-        </dl>
-
-        <dl className="grid grid-cols-3 gap-3 border-t border-rule pt-4">
-          <DimField
-            label={`${copy.stock.length} · ${copy.stock.lengthRo}`}
-            value={item.dims.length}
-            basis={item.dims.length_basis}
-          />
-          <DimField
-            label={`${copy.stock.width} · ${copy.stock.widthRo}`}
-            value={item.dims.width}
-            basis={item.dims.width_basis}
-          />
-          <DimField
-            label={`${copy.stock.thickness} · ${copy.stock.thicknessRo}`}
-            value={item.dims.thickness}
-            basis={item.dims.thickness_basis}
-          />
-        </dl>
-
-        <dl className="grid grid-cols-2 gap-x-4 gap-y-3 font-mono text-sm sm:grid-cols-4">
-          <ReadableField label="moisture" value={item.moisture} size="sm" />
-          <ReadableField label="weight" value={item.weight} size="sm" />
-          <ReadableField label="year" value={item.year} size="sm" />
-          <ReadableField label="defects" value={item.defects} size="sm" />
-        </dl>
-
+        <h3 className="font-display text-2xl leading-snug text-ink">{item.title}</h3>
+        <SpeciesLine
+          speciesRo={item.species_ro}
+          speciesEn={item.species_en}
+          label={copy.stock.species}
+          labelRo={copy.stock.speciesRo}
+        />
+        <Dims item={item} />
         <NoteLine notes={item.notes} />
+        <AskForPiece href={`/contact?slab=${encodeURIComponent(item.id)}`} />
+      </div>
+    </PassportShell>
+  );
+}
 
-        {isPortfolio ? null : (
-          <Link
-            href={`/contact?slab=${encodeURIComponent(item.id)}`}
-            className="mt-auto text-sm font-semibold text-forest underline decoration-rule underline-offset-4 hover:decoration-forest"
-          >
-            {copy.cta.askFreightQuote} →
-          </Link>
-        )}
+export function PassportShell({
+  kicker,
+  id,
+  children,
+}: {
+  kicker: string;
+  id: string;
+  children: ReactNode;
+}) {
+  return (
+    <article className="flex flex-col border border-ink bg-paper p-1.5">
+      <div className="flex flex-1 flex-col border border-rule bg-paper">
+        <header className="border-b border-rule px-4 py-4">
+          <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-ink-muted">
+            {kicker}
+          </p>
+          <p className="mt-1 font-mono text-2xl leading-tight tracking-[0.04em] text-ink sm:text-3xl">
+            {id}
+          </p>
+        </header>
+        {children}
       </div>
     </article>
+  );
+}
+
+export function AskForPiece({ href }: { href: string }) {
+  const copy = getCopy();
+
+  return (
+    <Link
+      href={href}
+      className="mt-auto w-fit text-sm font-semibold text-forest underline decoration-rule underline-offset-4 hover:decoration-forest"
+    >
+      {copy.cta.askForPiece}
+      <span className="mt-1 block font-mono text-[11px] font-normal uppercase tracking-[0.14em] text-ink-muted">
+        {copy.cta.askForPieceRo}
+      </span>
+    </Link>
+  );
+}
+
+export function SpeciesLine({
+  speciesRo,
+  speciesEn,
+  label,
+  labelRo,
+}: {
+  speciesRo: string;
+  speciesEn: string;
+  label: string;
+  labelRo: string;
+}) {
+  const showRo = !isEmptyField(speciesRo);
+  const showEn = !isEmptyField(speciesEn);
+  if (!showRo && !showEn) return null;
+
+  return (
+    <div>
+      <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-ink-muted">
+        {label} · {labelRo}
+      </p>
+      {showRo ? (
+        <p className="mt-1 font-display text-2xl leading-snug text-ink">{speciesRo}</p>
+      ) : null}
+      {showEn ? <p className="text-ink-muted">{speciesEn}</p> : null}
+    </div>
   );
 }
 
@@ -183,31 +224,26 @@ export function DimField({
   );
 }
 
-function ReadableField({
-  label,
-  value,
-  size = "md",
-}: {
-  label: string;
-  value: string;
-  size?: "sm" | "md" | "xl";
-}) {
-  const empty = isEmptyField(value);
-  const valueClass =
-    size === "xl"
-      ? "mt-1 font-display text-2xl leading-snug sm:text-[1.7rem]"
-      : size === "sm"
-        ? "mt-1 text-sm"
-        : "mt-1 text-lg";
+function Dims({ item }: { item: PhotoItem }) {
+  const copy = getCopy();
 
   return (
-    <div>
-      <dt className="font-mono text-[11px] uppercase tracking-[0.14em] text-ink-muted">
-        {label}
-      </dt>
-      <dd className={`${valueClass} ${empty ? "text-ink-muted" : "text-ink"}`}>
-        {empty ? "—" : value}
-      </dd>
-    </div>
+    <dl className="grid grid-cols-3 gap-3 border-t border-rule pt-4">
+      <DimField
+        label={`${copy.stock.length} · ${copy.stock.lengthRo}`}
+        value={item.dims.length}
+        basis={item.dims.length_basis}
+      />
+      <DimField
+        label={`${copy.stock.width} · ${copy.stock.widthRo}`}
+        value={item.dims.width}
+        basis={item.dims.width_basis}
+      />
+      <DimField
+        label={`${copy.stock.thickness} · ${copy.stock.thicknessRo}`}
+        value={item.dims.thickness}
+        basis={item.dims.thickness_basis}
+      />
+    </dl>
   );
 }

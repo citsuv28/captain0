@@ -1,17 +1,6 @@
-import Link from "next/link";
-import { DimField, NoteLine } from "@/components/PhotoCard";
+import { AskForPiece, DimField, NoteLine, PassportShell, SpeciesLine } from "@/components/PhotoCard";
 import { PhotoMedia } from "@/components/PhotoMedia";
-import {
-  getCopy,
-  type PhotoItem,
-  type StockBookmatch,
-} from "@/lib/content";
-
-const LANE_LABEL: Record<PhotoItem["lane"], string> = {
-  A_placi: "A · plăci",
-  B_furnir: "B · furnir",
-  C_special: "C · special",
-};
+import { getCopy, type PhotoItem, type StockBookmatch } from "@/lib/content";
 
 type BookmatchCardProps = {
   listing: StockBookmatch;
@@ -22,12 +11,12 @@ export function BookmatchCard({ listing }: BookmatchCardProps) {
   const [left, right] = listing.pieces;
 
   return (
-    <article className="flex flex-col border border-rule bg-paper">
+    <PassportShell
+      kicker={`${copy.stock.bookmatchKicker} · ${copy.stock.bookmatchKickerRo}`}
+      id={listing.id}
+    >
       <div className="border-b border-rule px-4 py-3">
-        <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-copper">
-          {copy.stock.bookmatchKicker} · {copy.stock.bookmatchKickerRo}
-        </p>
-        <p className="mt-1 text-sm text-ink-muted">
+        <p className="text-sm text-ink-muted">
           {copy.stock.bookmatchHint}{" "}
           <span className="font-mono text-[11px] uppercase tracking-[0.14em]">
             {copy.stock.bookmatchHintRo}
@@ -36,7 +25,6 @@ export function BookmatchCard({ listing }: BookmatchCardProps) {
         <p className="mt-3 font-mono text-[11px] uppercase tracking-[0.16em] text-ink-muted">
           {copy.stock.pairId} · {copy.stock.pairIdRo}
         </p>
-        <p className="mt-1 font-mono text-lg text-ink">{listing.id}</p>
       </div>
 
       <div className="grid gap-px bg-rule md:grid-cols-2">
@@ -49,14 +37,9 @@ export function BookmatchCard({ listing }: BookmatchCardProps) {
           notes={listing.notes}
           label={`${copy.stock.pairNote} · ${copy.stock.pairNoteRo}`}
         />
-        <Link
-          href={`/contact?slab=${encodeURIComponent(listing.id)}`}
-          className="text-sm font-semibold text-forest underline decoration-rule underline-offset-4 hover:decoration-forest"
-        >
-          {copy.cta.askFreightQuote} →
-        </Link>
+        <AskForPiece href={`/contact?slab=${encodeURIComponent(listing.id)}`} />
       </div>
-    </article>
+    </PassportShell>
   );
 }
 
@@ -68,7 +51,7 @@ function PiecePane({ item }: { item: PhotoItem }) {
       <PhotoMedia
         src={item.photo.src}
         alt={item.photo.alt}
-        caption={`${item.id} · ${item.type} · ${item.lane}`}
+        caption={item.id}
         className="aspect-[4/5]"
       />
       <div>
@@ -76,17 +59,14 @@ function PiecePane({ item }: { item: PhotoItem }) {
           {copy.stock.pieceId} · {copy.stock.pieceIdRo}
         </p>
         <p className="mt-1 font-mono text-lg text-ink">{item.id}</p>
-        <p className="mt-3 font-mono text-[11px] uppercase tracking-[0.16em] text-ink-muted">
-          {LANE_LABEL[item.lane]} · {item.type}
-        </p>
-        <h3 className="mt-2 font-display text-2xl leading-snug text-ink">
-          {item.title}
-        </h3>
+        <h3 className="mt-2 font-display text-2xl leading-snug text-ink">{item.title}</h3>
       </div>
-      <dl className="grid gap-3">
-        <Field label="species_ro" value={item.species_ro} />
-        <Field label="species_en" value={item.species_en} />
-      </dl>
+      <SpeciesLine
+        speciesRo={item.species_ro}
+        speciesEn={item.species_en}
+        label={copy.stock.species}
+        labelRo={copy.stock.speciesRo}
+      />
       <dl className="grid grid-cols-3 gap-3 border-t border-rule pt-4">
         <DimField
           label={`${copy.stock.length} · ${copy.stock.lengthRo}`}
@@ -106,19 +86,5 @@ function PiecePane({ item }: { item: PhotoItem }) {
       </dl>
       <NoteLine notes={item.notes} />
     </section>
-  );
-}
-
-function Field({ label, value }: { label: string; value: string }) {
-  const empty = value.trim() === "";
-  return (
-    <div>
-      <dt className="font-mono text-[11px] uppercase tracking-[0.14em] text-ink-muted">
-        {label}
-      </dt>
-      <dd className={`mt-1 text-lg ${empty ? "text-ink-muted" : "text-ink"}`}>
-        {empty ? "—" : value}
-      </dd>
-    </div>
   );
 }

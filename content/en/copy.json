@@ -62,6 +62,8 @@
     "tbdNote": "Pieces without a complete L × W × T sit here. Demo sizes stay marked demo until measured length, width, and thickness arrive.",
     "pieceId": "Piece ID",
     "pieceIdRo": "Cod piesă",
+    "species": "Species",
+    "speciesRo": "Specie",
     "note": "Note",
     "noteRo": "Notă",
     "demo": "demo",
@@ -86,8 +88,8 @@
   "busteni": {
     "title": "Logs",
     "kicker": "Proveniență",
-    "intent": "The stock slabs were cut from logs like these.",
-    "intentRo": "Plăcile din stoc au fost tăiate din bușteni ca aceștia.",
+    "intent": "The log stays whole until it is cut, so the grain can match.",
+    "intentRo": "Bușteanul rămâne întreg până se taie, ca fibra să se potrivească.",
     "numbers": "Numbers",
     "numbersRo": "Numere",
     "species": "Species",
@@ -114,7 +116,9 @@
   },
   "cta": {
     "requestStockList": "Request stock list",
-    "askFreightQuote": "Ask for freight quote"
+    "askFreightQuote": "Ask for freight quote",
+    "askForPiece": "Ask for this piece",
+    "askForPieceRo": "Cere piesa"
   },
   "footer": {
     "mark": "Captain0",

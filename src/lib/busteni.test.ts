@@ -18,10 +18,15 @@ describe("Bușteni provenance", () => {
     );
     expect(copy.busteni.title).toBe("Logs");
     expect(copy.nav.map((item) => item.label)).not.toContain("Bușteni");
+    expect(copy.busteni.intent).toBe(
+      "The log stays whole until it is cut, so the grain can match.",
+    );
     expect(copy.busteni.intentRo).toBe(
-      "Plăcile din stoc au fost tăiate din bușteni ca aceștia.",
+      "Bușteanul rămâne întreg până se taie, ca fibra să se potrivească.",
     );
     expect(copy.busteni.intent.toLowerCase()).not.toMatch(/c0-a0|a03|a04|a09/);
+    expect(copy.cta.askForPiece).toBe("Ask for this piece");
+    expect(copy.cta.askForPieceRo).toBe("Cere piesa");
 
     expect(busteni.hero.src).toBe(
       "/photos/busteni/08-standing-tree-burl-source.jpg",
