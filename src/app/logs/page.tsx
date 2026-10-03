@@ -16,8 +16,8 @@ export const metadata: Metadata = {
   title: copy.busteni.title,
 };
 
-export default function BusteniPage() {
-  const busteni = getBusteni();
+export default function LogsPage() {
+  const logs = getBusteni();
 
   return (
     <main id="main" className="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:py-16">
@@ -27,31 +27,31 @@ export default function BusteniPage() {
       </PageIntro>
 
       <PhotoMedia
-        src={busteni.hero.src}
-        alt={busteni.hero.alt}
+        src={logs.hero.src}
+        alt={logs.hero.alt}
         caption={`${BUSTENI_SPECIES_RO} · ${BUSTENI_SPECIES_EN}`}
         className="mx-auto mt-10 aspect-[3/4] max-w-xl"
         priority
       />
 
       <ul className="mt-12 grid gap-8">
-        {busteni.logs.map((log) => (
+        {logs.logs.map((log) => (
           <li key={busteniLogKey(log)}>
             <BusteniCard log={log} />
           </li>
         ))}
       </ul>
 
-      <section className="mt-14" aria-labelledby="busteni-context">
+      <section className="mt-14" aria-labelledby="logs-context">
         <h2
-          id="busteni-context"
+          id="logs-context"
           className="font-mono text-[11px] uppercase tracking-[0.18em] text-ink-muted"
         >
           {copy.busteni.contextTitle}
         </h2>
         <p className="mt-2 text-ink-muted">{copy.busteni.contextNote}</p>
         <ul className="mt-6 grid gap-6 md:grid-cols-3">
-          {busteni.context.map((photo) => (
+          {logs.context.map((photo) => (
             <li key={photo.src} className="border border-rule bg-paper">
               <PhotoMedia
                 src={photo.src}

@@ -13,7 +13,11 @@ describe("Bușteni provenance", () => {
     const busteni = getBusteni();
     const copy = getCopy();
 
-    expect(copy.nav.map((item) => item.label)).toContain("Bușteni");
+    expect(copy.nav).toEqual(
+      expect.arrayContaining([{ href: "/logs", label: "Logs" }]),
+    );
+    expect(copy.busteni.title).toBe("Logs");
+    expect(copy.nav.map((item) => item.label)).not.toContain("Bușteni");
     expect(copy.busteni.intentRo).toBe(
       "Plăcile din stoc au fost tăiate din bușteni ca aceștia.",
     );

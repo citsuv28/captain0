@@ -9,7 +9,7 @@
   "nav": [
     { "href": "/", "label": "Home" },
     { "href": "/stock", "label": "Stock" },
-    { "href": "/busteni", "label": "Bușteni" },
+    { "href": "/logs", "label": "Logs" },
     { "href": "/portfolio", "label": "Portfolio" },
     { "href": "/about", "label": "About" },
     { "href": "/contact", "label": "Contact" }
@@ -84,7 +84,7 @@
     ]
   },
   "busteni": {
-    "title": "Bușteni",
+    "title": "Logs",
     "kicker": "Proveniență",
     "intent": "The stock slabs were cut from logs like these.",
     "intentRo": "Plăcile din stoc au fost tăiate din bușteni ca aceștia.",
